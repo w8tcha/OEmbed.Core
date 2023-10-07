@@ -29,7 +29,6 @@ public class YouTubeTests : IProviderTests
     }
 
 #if NET481
-
     [Theory]
     [InlineData("https://youtu.be/LKWFkELeYwc")]
     [InlineData("http://youtu.be/LKWFkELeYwc")]

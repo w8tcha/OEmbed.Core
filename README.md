@@ -1,5 +1,4 @@
 # OEmbedSharp
-===========
 
 C# [oEmbed](https://oembed.com) consumer library for .NET Framwork 4.8.1 and .NET (Core) 6/7
 

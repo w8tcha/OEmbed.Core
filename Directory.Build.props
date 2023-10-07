@@ -8,7 +8,7 @@
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageProjectUrl>https://github.com/w8tcha/OEmbedSharp</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/w8tcha/OEmbedSharp/blob/master/LICENSE.md</PackageLicenseUrl>
-    <PackageIcon>../oembed.png</PackageIcon>
+    <PackageIcon>oembed.png</PackageIcon>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/w8tcha/OEmbedSharp.git</RepositoryUrl>
     <DebugType>embedded</DebugType>
