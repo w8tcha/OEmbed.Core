@@ -1,118 +1,231 @@
-﻿using System;
-using System.Collections.Generic;
+﻿namespace OEmbedSharp;
+
+#if NET481
+using System.IO;
+#endif
 using System.Linq;
 using System.Net;
+#if NET6_0_OR_GREATER
 using System.Net.Http;
+#endif
 using System.Runtime.Caching;
-using System.Threading.Tasks;
 
 using Newtonsoft.Json;
 
-namespace OEmbedSharp
+using OEmbedSharp.Interfaces;
+
+public class OEmbed : IOEmbed
 {
-    public class OEmbed
+    public OEmbed()
     {
-        static OEmbed()
+        this.Providers = new ProviderList().GetProviders();
+
+        this.options = new Options();
+
+        var type = typeof(OEmbed);
+        var assemblyName = type.Assembly.GetName();
+
+        var agent = $"{type.Namespace}/{assemblyName!.Version!.Major}.{assemblyName!.Version!.Minor}";
+
+#if NET481
+        this.userAgent = agent;
+#endif
+
+#if NET6_0_OR_GREATER
+        this.httpClient = new HttpClient();
+        this.httpClient.DefaultRequestHeaders.UserAgent.ParseAdd(agent);
+#endif
+    }
+
+#if NET481
+    private readonly string userAgent;
+#endif
+
+#if NET6_0_OR_GREATER
+    private readonly HttpClient httpClient;
+#endif
+
+    private readonly Options options;
+
+    private static readonly MemoryCache Cache = MemoryCache.Default;
+
+    public List<Provider> Providers { get; set; }
+
+    /// <summary>
+    /// Check if url matches any Provider Host address
+    /// </summary>
+    /// <param name="url">The URL.</param>
+    /// <returns><c>true</c> if this instance can embed the specified URL; otherwise, <c>false</c>.</returns>
+    public bool CanEmbed(string url) => this.CanEmbed(new Uri(url));
+
+    /// <summary>
+    /// Check if url matches any Provider Host address
+    /// </summary>
+    /// <param name="uri">The URI.</param>
+    /// <returns><c>true</c> if this instance can embed the specified URI; otherwise, <c>false</c>.</returns>
+    public bool CanEmbed(Uri uri)
+    {
+        return this.Providers.Any(p => p.CanHandleUrl(uri));
+    }
+
+#if NET481
+    /// <summary>
+    /// Embeds the specified URL.
+    /// </summary>
+    /// <param name="url">The URL.</param>
+    /// <returns>Response.</returns>
+    public Response Embed(string url)
+    {
+        if (url == null)
         {
-            // YouTube
-            Providers.Add(new OEmbedProvider
+            return null;
+        }
+
+        var uri = new Uri(url);
+
+        var provider = Providers.FirstOrDefault(p => p.CanHandleUrl(uri));
+
+        if (provider == null)
+        {
+            return null;
+        }
+
+        var match = provider.MatchScheme(uri);
+
+        if (!match)
+        {
+            return null;
+        }
+
+        if (Cache.Contains(url))
+        {
+            return (Response)Cache.Get(url);
+        }
+
+        if (string.IsNullOrEmpty(provider.Endpoint))
+        {
+            return GetHtml(provider, url);
+        }
+
+        return this.GetJson(provider, url);
+    }
+#endif
+
+#if NET6_0_OR_GREATER
+    /// <summary>
+    /// Embeds the specified URL.
+    /// </summary>
+    /// <param name="url">The URL.</param>
+    /// <returns>Response.</returns>
+    public async Task<Response> EmbedAsync(string url)
+    {
+        if (url == null)
+        {
+            return null;
+        }
+
+        var uri = new Uri(url);
+
+        var provider = this.Providers.FirstOrDefault(p => p.CanHandleUrl(uri));
+
+        if (provider == null)
+        {
+            return null;
+        }
+
+        var match = provider.MatchScheme(uri);
+
+        if (!match)
+        {
+            return null;
+        }
+
+        if (Cache.Contains(url))
+        {
+            return (Response)Cache.Get(url);
+        }
+
+        return string.IsNullOrEmpty(provider.Endpoint)
+                   ? GetHtml(provider, url)
+                   : await this.GetJsonAsync(provider, url);
+    }
+
+#endif
+
+    private static Response GetHtml(Provider provider, string url)
+    {
+        var response = new Response { Html = provider.Html.Replace("{url}", url), Type = ResponseType.Rich };
+
+        return response;
+    }
+
+#if NET481
+    /// <summary>
+    /// Get the oEmbed JSON
+    /// </summary>
+    /// <param name="provider">The provider.</param>
+    /// <param name="url">The URL.</param>
+    /// <returns>Returns the JSON Response</returns>
+    private Response GetJson(Provider provider, string url)
+    {
+        var endpoint = $"{provider.Endpoint}?url={WebUtility.UrlEncode(url)}&format=json";
+
+        var webRequest = (HttpWebRequest)WebRequest.Create(endpoint);
+
+        webRequest.UserAgent = this.userAgent;
+
+        try
+        {
+            var webResponse = (HttpWebResponse)webRequest.GetResponse();
+
+            var responseStream = webResponse.GetResponseStream();
+
+            if (responseStream == null)
             {
-                Name = "YouTube",
-                Schemes = new[] { @"https?://www\.youtube\.com/watch\?v=.+", @"https?://youtu\.be/.+" },
-                Endpoint = "http://www.youtube.com/oembed"
-            });
-
-            // Flickr
-            Providers.Add(new OEmbedProvider
-            {
-                Name = "Flickr",
-                Schemes = new[] { @"https?://.+\.flickr\.com/photos/.+", @"https?://flic\.kr/p/.+" },
-                Endpoint = "http://www.flickr.com/services/oembed"
-            });
-
-            // SlideShare
-            Providers.Add(new OEmbedProvider
-            {
-                Name = "SlideShare",
-                Schemes = new[] { @"https?://www\.slideshare\.net/.+/.+" },
-                Endpoint = "http://www.slideshare.net/api/oembed/2"
-            });
-
-            // Hatena Blog
-            Providers.Add(new OEmbedProvider
-            {
-                Name = "Hatena Blog",
-                Schemes = new[] { @"http://.+\.hatenablog\.com/.+", @"http://.+\.hatenablog\.jp/.+", @"http://.+\.hateblo\.jp/.+", @"http://.+\.hatenadialy\.com/.+", @"http://.+\.hatenadialy\.jp/.+" },
-                Endpoint = "http://hatenablog.com/oembed"
-            });
-        }
-
-        public OEmbed()
-            : this(new OEmbedOptions())
-        {
-        }
-
-        public OEmbed(OEmbedOptions options)
-        {
-            _options = options;
-        }
-
-        private readonly OEmbedOptions _options;
-
-        private static readonly MemoryCache _cache = MemoryCache.Default;
-        private static readonly List<OEmbedProvider> _providers = new List<OEmbedProvider>();
-
-        public static ObjectCache Cache
-        {
-            get { return _cache; }
-        }
-
-        public static List<OEmbedProvider> Providers
-        {
-            get { return _providers; }
-        }
-
-        public bool CanEmbed(string url)
-        {
-            return _providers.Any(p => p.CanHandleUrl(url));
-        }
-
-        public OEmbedResponse Embed(string url)
-        {
-            return EmbedAsync(url).Result;
-        }
-
-        public async Task<OEmbedResponse> EmbedAsync(string url)
-        {
-            if (url == null)
-            {
-                throw new ArgumentNullException("url");
+                return null;
             }
 
-            var provider = _providers.FirstOrDefault(p => p.CanHandleUrl(url));
+            var streamReader = new StreamReader(responseStream);
 
-            if (provider == null)
+            var content = streamReader.ReadToEnd();
+
+            var response = JsonConvert.DeserializeObject<Response>(content);
+
+            if (this.options.EnableCache)
             {
-                throw new ArgumentException("url");
-            }
-
-            if (_cache.Contains(url))
-            {
-                return (OEmbedResponse)_cache.Get(url);
-            }
-
-            var endpoint = provider.Endpoint + "?url=" + WebUtility.UrlEncode(url) + "&format=json";
-
-            var content = await new HttpClient().GetStringAsync(endpoint);
-
-            var response = JsonConvert.DeserializeObject<OEmbedResponse>(content);
-
-            if (_options.EnableCache && response.CacheAge > 0)
-            {
-                _cache.Add(url, response, DateTimeOffset.Now.AddSeconds(response.CacheAge));
+                Cache.Add(url, response, DateTimeOffset.Now.AddDays(1));
             }
 
             return response;
-        } 
+        }
+        catch (Exception)
+        {
+            return null;
+        }
     }
+#endif
+
+#if NET6_0_OR_GREATER
+    /// <summary>
+    /// Get the oEmbed JSON
+    /// </summary>
+    /// <param name="provider">The provider.</param>
+    /// <param name="url">The URL.</param>
+    /// <returns>Returns the JSON Response</returns>
+    private async Task<Response> GetJsonAsync(Provider provider, string url)
+    {
+        var endpoint = $"{provider.Endpoint}?url={WebUtility.UrlEncode(url)}&format=json";
+
+        var content = await this.httpClient.GetStringAsync(endpoint);
+
+        var response = JsonConvert.DeserializeObject<Response>(content);
+
+        if (this.options.EnableCache)
+        {
+            Cache.Add(url, response, DateTimeOffset.Now.AddDays(1));
+        }
+
+        return response;
+    }
+#endif
 }

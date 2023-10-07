@@ -1,9 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OEmbedSharp", "OEmbedSharp\OEmbedSharp.csproj", "{61BDBEB6-143A-47E7-890B-DB6EA013938B}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OEmbedSharp", "OEmbedSharp\OEmbedSharp.csproj", "{61BDBEB6-143A-47E7-890B-DB6EA013938B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OEmbedSharp.Tests", "OEmbedSharp.Tests\OEmbedSharp.Tests.csproj", "{618022EE-AFB9-4C89-93E6-BA0728E2950D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OEmbedSharp.Tests", "OEmbedSharp.Tests\OEmbedSharp.Tests.csproj", "{618022EE-AFB9-4C89-93E6-BA0728E2950D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projektmappenelemente", "Projektmappenelemente", "{1FB2FA97-6B1E-4D0A-81A8-4AC3A4547CD7}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

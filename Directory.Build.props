@@ -1,0 +1,28 @@
+<Project>
+
+  <PropertyGroup>
+    <Version>2.0.0</Version>
+    <Authors>Tatsuro Shibamura;Ingo Herbote</Authors>
+    <Company>ServiceStack, Inc.</Company>
+    <Copyright>&#169; Tatsuro Shibamura and Ingo Herbote</Copyright>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageProjectUrl>https://github.com/w8tcha/OEmbedSharp</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/w8tcha/OEmbedSharp/blob/master/LICENSE.md</PackageLicenseUrl>
+    <PackageIconUrl>https://servicestack.net/img/logo-128.png</PackageIconUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/w8tcha/OEmbedSharp.git</RepositoryUrl>
+    <DebugType>embedded</DebugType>
+    <LangVersion>latest</LangVersion>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
+    <NoWarn>$(NoWarn);1591;CS3001;CS3002;CS3003;CS3005;CS3009;CS3015;CS3024;CS3027</NoWarn>
+  </PropertyGroup>
+
+	<PropertyGroup Condition=" '$(TargetFramework)' == 'net481' ">
+		<SignAssembly>True</SignAssembly>
+		<DelaySign>False</DelaySign>
+		<AssemblyOriginatorKeyFile>../OEmbedSharp.snk</AssemblyOriginatorKeyFile>
+	</PropertyGroup>
+
+</Project>
