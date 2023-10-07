@@ -1,12 +1,10 @@
-# OEmbedSharp
-
-![oembed](https://github.com/w8tcha/OEmbedSharp/assets/722575/1a3d14e1-8249-4fa3-a230-789127f12c2b)
+# OEmbed.Core
 
 C# [oEmbed](https://oembed.com) consumer library for .NET Framwork 4.8.1 and .NET (Core) 6/7
 
-[![NuGet](https://img.shields.io/nuget/v/OEmbedSharp.svg)](https://nuget.org/packages/OEmbedSharp)
+[![NuGet](https://img.shields.io/nuget/v/OEmbed.Core.svg)](https://nuget.org/packages/OEmbed.Core)
 
-[![build dotnet](https://github.com/w8tcha/OEmbedSharp/actions/workflows/build.yml/badge.svg)](https://github.com/w8tcha/OEmbedSharp/actions/workflows/build.yml)
+[![build dotnet](https://github.com/w8tcha/OEmbed.Core/actions/workflows/build.yml/badge.svg)](https://github.com/w8tcha/OEmbed.Core/actions/workflows/build.yml)
 
 ### Supported Providers
 * CodePen.io
