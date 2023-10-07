@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
-using global::OEmbed.Net.Interfaces;
+using global::OEmbed.Core.Interfaces;
 
 /// <summary>
 /// Extension methods for setting up browser detection services in an <see cref="IServiceCollection" />.
