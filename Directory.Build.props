@@ -22,7 +22,7 @@
 	<PropertyGroup Condition=" '$(TargetFramework)' == 'net481' ">
 		<SignAssembly>True</SignAssembly>
 		<DelaySign>False</DelaySign>
-		<AssemblyOriginatorKeyFile>../OEmbedSharp.snk</AssemblyOriginatorKeyFile>
+		<AssemblyOriginatorKeyFile>../OEmbed.Core.snk</AssemblyOriginatorKeyFile>
 	</PropertyGroup>
 
 </Project>
