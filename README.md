@@ -3,6 +3,10 @@
 
 C# [oEmbed](https://oembed.com) consumer library for .NET Framwork 4.8.1 and .NET (Core) 6/7
 
+[![NuGet](https://img.shields.io/nuget/v/OEmbedSharp.svg)](https://nuget.org/packages/OEmbedSharp)
+
+[![build dotnet](https://github.com/w8tcha/OEmbedSharp/actions/workflows/build.yml/badge.svg)](https://github.com/w8tcha/OEmbedSharp/actions/workflows/build.yml)
+
 ### Supported Providers
 * CodePen.io
 * DailyMotion.com
