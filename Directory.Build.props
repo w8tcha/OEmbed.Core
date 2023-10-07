@@ -3,12 +3,12 @@
   <PropertyGroup>
     <Version>2.0.0</Version>
     <Authors>Tatsuro Shibamura;Ingo Herbote</Authors>
-    <Company>ServiceStack, Inc.</Company>
+    <Company>Ingo Herbote</Company>
     <Copyright>&#169; Tatsuro Shibamura and Ingo Herbote</Copyright>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageProjectUrl>https://github.com/w8tcha/OEmbedSharp</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/w8tcha/OEmbedSharp/blob/master/LICENSE.md</PackageLicenseUrl>
-    <PackageIconUrl>https://servicestack.net/img/logo-128.png</PackageIconUrl>
+    <PackageIcon>../oembed.png</PackageIcon>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/w8tcha/OEmbedSharp.git</RepositoryUrl>
     <DebugType>embedded</DebugType>

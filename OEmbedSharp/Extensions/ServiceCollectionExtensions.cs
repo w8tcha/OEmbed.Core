@@ -16,6 +16,7 @@ public static class ServiceCollectionExtensions
     /// Adds browser detection services to the specified <see cref="IServiceCollection" />.
     /// </summary>
     /// <param name="services">The <see cref="IServiceCollection" /> to add services to.</param>
+    /// <param name="setupAction">OEmbed options</param>
     /// <returns>The <see cref="IServiceCollection"/> so that additional calls can be chained.</returns>
     public static IServiceCollection AddOEmbed(this IServiceCollection services)
     {

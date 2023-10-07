@@ -2,6 +2,7 @@
   <PropertyGroup>
 	  <TargetFrameworks>net481;net6.0;net7.0</TargetFrameworks>
 	  <LangVersion>latest</LangVersion>
+	  <Description>C# oEmbed consumer library for .NET Framwork 4.8.1 and .NET (Core) 6/7</Description>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
