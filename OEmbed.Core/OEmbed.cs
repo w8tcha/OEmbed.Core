@@ -103,12 +103,7 @@ public class OEmbed : IOEmbed
             return (Response)Cache.Get(url);
         }
 
-        if (string.IsNullOrEmpty(provider.Endpoint))
-        {
-            return GetHtml(provider, url);
-        }
-
-        return this.GetJson(provider, url);
+        return string.IsNullOrEmpty(provider.Endpoint) ? GetHtml(provider, url) : this.GetJson(provider, url);
     }
 #endif
 

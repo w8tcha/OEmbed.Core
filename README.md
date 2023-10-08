@@ -13,9 +13,11 @@ C# [oEmbed](https://oembed.com) consumer library for .NET Framwork 4.8.1 and .NE
 * DailyMotion.com
 * Deezer.com
 * Deviantart.com
+* Facebook.com
 * Flickr.com
 * Giphy.com
 * Gist.GitHub.com
+* Instagram.com
 * Pinterest.com
 * Reddit.com
 * Soundcloud.com

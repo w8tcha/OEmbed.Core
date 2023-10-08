@@ -5,6 +5,8 @@
 	  <Description>C# oEmbed consumer library for .NET Framwork 4.8.1 and .NET (Core) 6/7</Description>
 	  <PackageTags>oembed;embed</PackageTags>
 	  <PackageIcon>oembed.png</PackageIcon>
+	  <PackageReadmeFile>README.md</PackageReadmeFile>
+	  <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
@@ -20,6 +22,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<None Include="..\LICENSE.md">
+		  <Pack>True</Pack>
+		  <PackagePath>\</PackagePath>
+		</None>
+		<None Include="..\README.md">
+		  <Pack>True</Pack>
+		  <PackagePath>\</PackagePath>
+		</None>
 		<None Include="oembed.png" Pack="true" PackagePath="\" />
 	</ItemGroup>
 
