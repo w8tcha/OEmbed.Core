@@ -8,10 +8,10 @@ public record CodePenProvider : Provider
     public CodePenProvider()
     {
         this.Name = "CodePen";
-        this.Hosts = new List<string> { "codepen.io" };
+        this.Hosts = ["codepen.io"];
 
         this.AddMatches(@"/(?:team/)?(?:[\w]+)/pen/([\w]+)/?");
-        
+
         this.Endpoint = "https://codepen.io/api/oembed";
     }
 }

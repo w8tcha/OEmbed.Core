@@ -5,7 +5,7 @@ using System.IO;
 #endif
 using System.Linq;
 using System.Net;
-#if NET6_0_OR_GREATER
+#if NET7_0_OR_GREATER
 using System.Net.Http;
 #endif
 using System.Runtime.Caching;
@@ -14,14 +14,13 @@ using global::OEmbed.Core.Interfaces;
 
 using Newtonsoft.Json;
 
-
 public class OEmbed : IOEmbed
 {
     public OEmbed()
     {
         this.Providers = new ProviderList().GetProviders();
 
-        this.options = new Options();
+        this._options = new Options();
 
         var type = typeof(OEmbed);
         var assemblyName = type.Assembly.GetName();
@@ -29,24 +28,24 @@ public class OEmbed : IOEmbed
         var agent = $"{type.Namespace}/{assemblyName!.Version!.Major}.{assemblyName!.Version!.Minor}";
 
 #if NET481
-        this.userAgent = agent;
+        this._userAgent = agent;
 #endif
 
-#if NET6_0_OR_GREATER
+#if NET7_0_OR_GREATER
         this.httpClient = new HttpClient();
         this.httpClient.DefaultRequestHeaders.UserAgent.ParseAdd(agent);
 #endif
     }
 
 #if NET481
-    private readonly string userAgent;
+    private readonly string _userAgent;
 #endif
 
-#if NET6_0_OR_GREATER
+#if NET7_0_OR_GREATER
     private readonly HttpClient httpClient;
 #endif
 
-    private readonly Options options;
+    private readonly Options _options;
 
     private static readonly MemoryCache Cache = MemoryCache.Default;
 
@@ -107,7 +106,7 @@ public class OEmbed : IOEmbed
     }
 #endif
 
-#if NET6_0_OR_GREATER
+#if NET7_0_OR_GREATER
     /// <summary>
     /// Embeds the specified URL.
     /// </summary>
@@ -168,7 +167,7 @@ public class OEmbed : IOEmbed
 
         var webRequest = (HttpWebRequest)WebRequest.Create(endpoint);
 
-        webRequest.UserAgent = this.userAgent;
+        webRequest.UserAgent = this._userAgent;
 
         try
         {
@@ -187,7 +186,7 @@ public class OEmbed : IOEmbed
 
             var response = JsonConvert.DeserializeObject<Response>(content);
 
-            if (this.options.EnableCache)
+            if (this._options.EnableCache)
             {
                 Cache.Add(url, response, DateTimeOffset.Now.AddDays(1));
             }
@@ -201,7 +200,7 @@ public class OEmbed : IOEmbed
     }
 #endif
 
-#if NET6_0_OR_GREATER
+#if NET7_0_OR_GREATER
     /// <summary>
     /// Get the oEmbed JSON
     /// </summary>

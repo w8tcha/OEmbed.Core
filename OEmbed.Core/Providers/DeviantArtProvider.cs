@@ -5,8 +5,8 @@ public record DeviantArtProvider : Provider
     public DeviantArtProvider()
     {
         this.Name = "DeviantArt";
-        this.Hosts = new List<string> { "www.deviantart.com", "deviantart.com", "fav.me", "sta.sh" };
-        
+        this.Hosts = ["www.deviantart.com", "deviantart.com", "fav.me", "sta.sh"];
+
         this.AddMatches(
             /*
              * https://www.deviantart.com/{author_name}/art/{id}

@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-	  <TargetFrameworks>net481;net6.0;net7.0</TargetFrameworks>
+	  <TargetFrameworks>net481;net7.0;net8.0</TargetFrameworks>
 	  <LangVersion>latest</LangVersion>
 	  <Description>C# oEmbed consumer library for .NET Framwork 4.8.1 and .NET (Core) 6/7</Description>
 	  <PackageTags>oembed;embed</PackageTags>
@@ -10,14 +10,14 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="System.Runtime.Caching" Version="7.0.0" />
+    <PackageReference Include="System.Runtime.Caching" Version="8.0.0" />
   </ItemGroup>
 
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net6.0' ">
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net7.0' ">
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
 
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net7.0' ">
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net8.0' ">
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
 

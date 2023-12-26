@@ -5,10 +5,7 @@ public record DailyMotionProvider : Provider
     public DailyMotionProvider()
     {
         this.Name = "DailyMotion";
-        this.Hosts = new List<string>
-                         {
-                             "dailymotion.com", "www.dailymotion.com", "dai.ly"
-                         };
+        this.Hosts = ["dailymotion.com", "www.dailymotion.com", "dai.ly"];
 
         this.AddMatches(@"/(?:(?:embed/)?video/)?([\w]+)(?:[\w\?=]+)?");
 

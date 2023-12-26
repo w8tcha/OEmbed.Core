@@ -5,10 +5,7 @@ public record SpotifyProvider : Provider
     public SpotifyProvider()
     {
         this.Name = "Spotify";
-        this.Hosts = new List<string>
-                         {
-                             "open.spotify.com"
-                         };
+        this.Hosts = ["open.spotify.com"];
 
         this.AddMatches(
             @"/(?:artist|track|album|playlist|show|episode)/([a-zA-Z0-9]+)/?(?:[^/^\s]*)?",

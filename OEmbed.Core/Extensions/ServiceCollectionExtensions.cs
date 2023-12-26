@@ -1,4 +1,4 @@
-﻿#if NET6_0_OR_GREATER
+﻿#if NET7_0_OR_GREATER
 namespace OEmbed.Core.Extensions;
 
 using Microsoft.AspNetCore.Http;

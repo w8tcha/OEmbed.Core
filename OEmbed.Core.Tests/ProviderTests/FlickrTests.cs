@@ -27,7 +27,7 @@ public class FlickrTests : IProviderTests
     }
 #endif
 
-#if NET6_0_OR_GREATER
+#if NET7_0_OR_GREATER
     [Theory]
     [InlineData("https://flickr.com/photos/josbuurmansphotography/50553575881")]
     public async Task EmbedAsyncTest(string url)

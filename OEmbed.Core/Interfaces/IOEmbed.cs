@@ -28,7 +28,7 @@ public interface IOEmbed
     Response Embed(string url);
 #endif
 
-#if NET6_0_OR_GREATER
+#if NET7_0_OR_GREATER
     /// <summary>
     /// Embeds the specified URL.
     /// </summary>

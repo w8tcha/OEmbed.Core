@@ -5,12 +5,12 @@ public record VimeoProvider : Provider
     public VimeoProvider()
     {
         this.Name = "Vimeo";
-        this.Hosts = new List<string>
-                         {
-                             "vimeo.com",
-                             "www.vimeo.com",
-                             "player.vimeo.com"
-                         };
+        this.Hosts =
+        [
+            "vimeo.com",
+            "www.vimeo.com",
+            "player.vimeo.com"
+        ];
 
         this.AddMatches(
             @"/(?:channels\/(?:\w+\/)|groups\/(?:[^\/]*\/videos)\/|ondemand(.+)|)(\d+)?(?:|\/\?)(?:\?\S+)?",

@@ -39,7 +39,7 @@ public class SpotifyTests : IProviderTests
     }
 #endif
 
-#if NET6_0_OR_GREATER
+#if NET7_0_OR_GREATER
     [Theory]
     [InlineData("https://open.spotify.com/artist/3HqSLMAZ3g3d5poNaI7GOU")]
     [InlineData("https://open.spotify.com/album/2xEH7SRzJq7LgA0fCtTlxH")]

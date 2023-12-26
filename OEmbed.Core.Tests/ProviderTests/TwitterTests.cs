@@ -35,7 +35,7 @@ public class TwitterTests : IProviderTests
     }
 #endif
 
-#if NET6_0_OR_GREATER
+#if NET7_0_OR_GREATER
     [Theory]
     [InlineData("http://twitter.com/panpianoatelier/status/1500450869590241286")]
     [InlineData("http://www.twitter.com/panpianoatelier/status/1500450869590241286")]

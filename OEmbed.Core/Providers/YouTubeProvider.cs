@@ -6,14 +6,14 @@ public record YouTubeProvider : Provider
     {
         this.Name = "YouTube";
 
-        this.Hosts = new List<string>
-                         {
-                             "m.youtube.com",
-                             "youtu.be",
-                             "youtube.com",
-                             "www.youtu.be",
-                             "www.youtube.com"
-                         };
+        this.Hosts =
+        [
+            "m.youtube.com",
+            "youtu.be",
+            "youtube.com",
+            "www.youtu.be",
+            "www.youtube.com"
+        ];
 
         this.AddMatches(@"/(?:embed/|video/|shorts/|live/|playlist\?list=|watch\?v=)?([\w|-]+)(?:[\w\&\?\=\.\-]+)?");
 

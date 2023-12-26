@@ -35,7 +35,7 @@ public class FacebookTests : IProviderTests
 
 #endif
 
-#if NET6_0_OR_GREATER
+#if NET7_0_OR_GREATER
     [InlineData("https://www.facebook.com/iu.loen/posts/501755841318628")]
     [InlineData("https://www.facebook.com/iu.loen/photos/281842976643250")]
     [InlineData("https://www.facebook.com/photo.php?fbid=281842976643250&set=pb.100044526485652.-2207520000..&type=3")]

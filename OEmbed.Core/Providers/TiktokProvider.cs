@@ -5,12 +5,12 @@ public record TikTokProvider : Provider
     public TikTokProvider()
     {
         this.Name = "TikTok";
-        this.Hosts = new List<string>
-                         {
-                             "tiktok.com",
-                             "www.tiktok.com",
-                             "m.tiktok.com"
-                         };
+        this.Hosts =
+        [
+            "tiktok.com",
+            "www.tiktok.com",
+            "m.tiktok.com"
+        ];
 
         this.AddMatches("/(@[^/]*)", @"/(?:v|@[^\/]*\/video)\/(\d+)(?:\.html|(?:\?\S*)?)");
 

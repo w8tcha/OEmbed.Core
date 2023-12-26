@@ -8,7 +8,7 @@ public record InstagramProvider : Provider
     public InstagramProvider()
     {
         this.Name = "Instagram";
-        this.Hosts = new List<string> { "instagram.com", "www.instagram.com", "instagr.am", "www.instagr.am" };
+        this.Hosts = ["instagram.com", "www.instagram.com", "instagr.am", "www.instagr.am"];
 
         this.AddMatches(@"/(?:[\w_\-]+/)?(?:p/|tv/|reel/)?([a-zA-Z0-9_-]+)/?(?:[\w?#&=]+)?");
 

@@ -11,7 +11,7 @@ public interface IProviderTests
     void EmbedTest(string url);
 #endif
 
-#if NET6_0_OR_GREATER
+#if NET7_0_OR_GREATER
     Task EmbedAsyncTest(string url);
 #endif
 }

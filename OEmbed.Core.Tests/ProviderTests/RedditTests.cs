@@ -27,7 +27,7 @@ public class RedditTests : IProviderTests
     }
 #endif
 
-#if NET6_0_OR_GREATER
+#if NET7_0_OR_GREATER
     [Theory]
     [InlineData("https://www.reddit.com/r/Showerthoughts/comments/2safxv/we_should_start_keeping_giraffes_a_secret_from/cno7zic")]
     public async Task EmbedAsyncTest(string url)

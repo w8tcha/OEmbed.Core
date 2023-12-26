@@ -30,7 +30,7 @@ public class DailyMotionTests : IProviderTests
     }
 #endif
 
-#if NET6_0_OR_GREATER
+#if NET7_0_OR_GREATER
     [Theory]
     [InlineData("https://www.dailymotion.com/video/x87cx3z")]
     [InlineData("https://dai.ly/x87cx3z")]

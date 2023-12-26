@@ -54,7 +54,7 @@ public class YouTubeTests : IProviderTests
     }
 #endif
 
-#if NET6_0_OR_GREATER
+#if NET7_0_OR_GREATER
     [Theory]
     [InlineData("https://youtu.be/LKWFkELeYwc")]
     [InlineData("http://youtu.be/LKWFkELeYwc")]

@@ -8,7 +8,7 @@ public record FacebookProvider : Provider
     public FacebookProvider()
     {
         this.Name = "Facebook";
-        this.Hosts = new List<string> { "facebook.com", "www.facebook.com" };
+        this.Hosts = ["facebook.com", "www.facebook.com"];
 
         this.AddMatches(
             "/(?:[^/]+)/(?:posts|activity|photos)/([^/]+)/?",

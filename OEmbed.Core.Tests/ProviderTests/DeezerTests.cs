@@ -2,7 +2,7 @@
 
 public class DeezerTests : IProviderTests
 {
-    [Theory] 
+    [Theory]
     [InlineData("https://www.deezer.com/us/album/217565572")]
     [InlineData("https://www.deezer.com/us/track/1286394242")]
     [InlineData("https://www.deezer.com/us/playlist/8664185942")]
@@ -30,7 +30,7 @@ public class DeezerTests : IProviderTests
     }
 #endif
 
-#if NET6_0_OR_GREATER
+#if NET7_0_OR_GREATER
     [Theory]
     [InlineData("https://www.deezer.com/us/album/217565572")]
     [InlineData("https://www.deezer.com/us/track/1286394242")]

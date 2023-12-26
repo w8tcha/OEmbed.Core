@@ -28,7 +28,7 @@ public class DeviantArtTests : IProviderTests
     }
 #endif
 
-#if NET6_0_OR_GREATER
+#if NET7_0_OR_GREATER
     [Theory]
     [InlineData("https://www.deviantart.com/wlop/art/Sunshine2-905829772")]
     [InlineData("https://www.deviantart.com/art/Sunshine2-905829772")]

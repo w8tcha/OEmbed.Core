@@ -27,7 +27,7 @@ public class GitHubGistTests : IProviderTests
     }
 #endif
 
-#if NET6_0_OR_GREATER
+#if NET7_0_OR_GREATER
     [Theory]
     [InlineData("https://gist.github.com/skabber/54099")]
     public async Task EmbedAsyncTest(string url)

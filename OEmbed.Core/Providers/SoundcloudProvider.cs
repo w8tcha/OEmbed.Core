@@ -5,10 +5,7 @@ public record SoundCloudProvider : Provider
     public SoundCloudProvider()
     {
         this.Name = "SoundCloud";
-        this.Hosts = new List<string>
-                         {
-                             "soundcloud.com"
-                         };
+        this.Hosts = ["soundcloud.com"];
 
         this.AddMatches(@"/(?!discover|stream|upload|popular|charts|people|pages|imprint|you)([\S]+)");
 

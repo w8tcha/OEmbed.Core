@@ -20,7 +20,7 @@ public abstract record Provider
     /// Gets or sets the matches.
     /// </summary>
     /// <value>The matches.</value>
-    public List<Regex> Matches { get; set; } = new();
+    public List<Regex> Matches { get; set; } = [];
 
     /// <summary>
     /// Gets or sets the endpoint.
