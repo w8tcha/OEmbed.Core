@@ -32,8 +32,8 @@ public class OEmbed : IOEmbed
 #endif
 
 #if NET7_0_OR_GREATER
-        this.httpClient = new HttpClient();
-        this.httpClient.DefaultRequestHeaders.UserAgent.ParseAdd(agent);
+        this._httpClient = new HttpClient();
+        this._httpClient.DefaultRequestHeaders.UserAgent.ParseAdd(agent);
 #endif
     }
 
@@ -42,7 +42,7 @@ public class OEmbed : IOEmbed
 #endif
 
 #if NET7_0_OR_GREATER
-    private readonly HttpClient httpClient;
+    private readonly HttpClient _httpClient;
 #endif
 
     private readonly Options _options;
@@ -211,11 +211,11 @@ public class OEmbed : IOEmbed
     {
         var endpoint = $"{provider.Endpoint}?url={WebUtility.UrlEncode(url)}&format=json";
 
-        var content = await this.httpClient.GetStringAsync(endpoint);
+        var content = await this._httpClient.GetStringAsync(endpoint);
 
         var response = JsonConvert.DeserializeObject<Response>(content);
 
-        if (this.options.EnableCache)
+        if (this._options.EnableCache)
         {
             Cache.Add(url, response, DateTimeOffset.Now.AddDays(1));
         }
