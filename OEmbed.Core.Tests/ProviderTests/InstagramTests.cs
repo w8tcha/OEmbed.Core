@@ -23,13 +23,13 @@ public class InstagramTests : IProviderTests
 #if NET481
     [Theory]
     [InlineData("https://www.instagram.com/dlwlrma/")]
-        [InlineData("https://www.instagram.com/p/1XSKgBAGz-/")]
-        [InlineData("https://www.instagram.com/tv/CHLVnWVAF9I/")]
-        [InlineData("https://www.instagram.com/reel/CW0gZu2rouF/")]
-        [InlineData("https://www.instagr.am/dlwlrma/p/1XSKgBAGz-/")]
-        [InlineData("https://www.instagr.am/dlwlrma/tv/CbKjea_ARNB/")]
-        [InlineData("https://www.instagram.com/dlwlrma/tv/CbKjea_ARNB/")]
-        [InlineData("https://www.instagram.com/p/1XSKgBAGz-/?utm_source=ig_web_button_share_sheet")]
+    [InlineData("https://www.instagram.com/p/1XSKgBAGz-/")]
+    [InlineData("https://www.instagram.com/tv/CHLVnWVAF9I/")]
+    [InlineData("https://www.instagram.com/reel/CW0gZu2rouF/")]
+    [InlineData("https://www.instagr.am/dlwlrma/p/1XSKgBAGz-/")]
+    [InlineData("https://www.instagr.am/dlwlrma/tv/CbKjea_ARNB/")]
+    [InlineData("https://www.instagram.com/dlwlrma/tv/CbKjea_ARNB/")]
+    [InlineData("https://www.instagram.com/p/1XSKgBAGz-/?utm_source=ig_web_button_share_sheet")]
     public void EmbedTest(string url)
     {
         var embed = new OEmbed();
@@ -42,6 +42,7 @@ public class InstagramTests : IProviderTests
 #endif
 
 #if NET7_0_OR_GREATER
+    [Theory]
     [InlineData("https://www.instagram.com/dlwlrma/")]
     [InlineData("https://www.instagram.com/p/1XSKgBAGz-/")]
     [InlineData("https://www.instagram.com/tv/CHLVnWVAF9I/")]
