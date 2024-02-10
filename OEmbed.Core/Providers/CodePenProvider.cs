@@ -1,5 +1,14 @@
 ﻿namespace OEmbed.Core.Providers;
 
+/// <summary>
+/// Class CodePenProvider.
+/// Implements the <see cref="OEmbed.Core.Provider" />
+/// Implements the <see cref="System.IEquatable{OEmbed.Core.Provider}" />
+/// Implements the <see cref="System.IEquatable{OEmbed.Core.Providers.CodePenProvider}" />
+/// </summary>
+/// <seealso cref="OEmbed.Core.Provider" />
+/// <seealso cref="System.IEquatable{OEmbed.Core.Provider}" />
+/// <seealso cref="System.IEquatable{OEmbed.Core.Providers.CodePenProvider}" />
 public record CodePenProvider : Provider
 {
     /// <summary>

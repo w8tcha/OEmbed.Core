@@ -3,7 +3,7 @@
 #if NET481
 using System.IO;
 #endif
-using System.Linq;
+
 using System.Net;
 #if NET7_0_OR_GREATER
 using System.Net.Http;
@@ -14,8 +14,16 @@ using global::OEmbed.Core.Interfaces;
 
 using Newtonsoft.Json;
 
+/// <summary>
+/// Class OEmbed.
+/// Implements the <see cref="IOEmbed" />
+/// </summary>
+/// <seealso cref="IOEmbed" />
 public class OEmbed : IOEmbed
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="OEmbed"/> class.
+    /// </summary>
     public OEmbed()
     {
         this.Providers = new ProviderList().GetProviders();
@@ -49,6 +57,10 @@ public class OEmbed : IOEmbed
 
     private static readonly MemoryCache Cache = MemoryCache.Default;
 
+    /// <summary>
+    /// Gets or sets the providers.
+    /// </summary>
+    /// <value>The providers.</value>
     public List<Provider> Providers { get; set; }
 
     /// <summary>
@@ -65,7 +77,7 @@ public class OEmbed : IOEmbed
     /// <returns><c>true</c> if this instance can embed the specified URI; otherwise, <c>false</c>.</returns>
     public bool CanEmbed(Uri uri)
     {
-        return this.Providers.Any(p => p.CanHandleUrl(uri));
+        return this.Providers.Exists(p => p.CanHandleUrl(uri));
     }
 
 #if NET481
@@ -83,7 +95,7 @@ public class OEmbed : IOEmbed
 
         var uri = new Uri(url);
 
-        var provider = Providers.FirstOrDefault(p => p.CanHandleUrl(uri));
+        var provider = Providers.Find(p => p.CanHandleUrl(uri));
 
         if (provider == null)
         {
@@ -121,7 +133,7 @@ public class OEmbed : IOEmbed
 
         var uri = new Uri(url);
 
-        var provider = this.Providers.FirstOrDefault(p => p.CanHandleUrl(uri));
+        var provider = this.Providers.Find(p => p.CanHandleUrl(uri));
 
         if (provider == null)
         {

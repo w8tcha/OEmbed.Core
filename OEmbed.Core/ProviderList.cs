@@ -2,6 +2,9 @@
 
 using System.Linq;
 
+/// <summary>
+/// Class ProviderList.
+/// </summary>
 public class ProviderList
 {
     /// <summary>

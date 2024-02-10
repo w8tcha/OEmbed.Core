@@ -9,7 +9,8 @@ public record TwitterProvider : Provider
         [
             "twitter.com",
             "www.twitter.com",
-            "mobile.twitter.com"
+            "mobile.twitter.com",
+            "x.com"
         ];
 
         this.AddMatches(@"/\w+/status(es)?/(\d+)(?:\?|/)?\S*");
