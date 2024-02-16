@@ -2,7 +2,7 @@
   <PropertyGroup>
 	  <TargetFrameworks>net481;net7.0;net8.0</TargetFrameworks>
 	  <LangVersion>latest</LangVersion>
-	  <Description>C# oEmbed consumer library for .NET Framwork 4.8.1 and .NET (Core) 6/7</Description>
+	  <Description>C# oEmbed consumer library for .NET Framwork 4.8.1 and .NET (Core) 7/8</Description>
 	  <PackageTags>oembed;embed</PackageTags>
 	  <PackageIcon>oembed.png</PackageIcon>
 	  <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -10,7 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="9.16.0.82469">
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="9.19.0.84025">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
