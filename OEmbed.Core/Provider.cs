@@ -1,4 +1,6 @@
-﻿namespace OEmbed.Core;
+﻿using System.Linq;
+
+namespace OEmbed.Core;
 
 /// <summary>
 /// Class Provider.
@@ -50,9 +52,23 @@ public abstract record Provider
     /// </summary>
     /// <param name="uri">The URI.</param>
     /// <returns>bool.</returns>
-    public virtual bool MatchScheme(Uri uri)
+    public virtual Match MatchScheme(Uri uri)
     {
-        return this.Matches.Exists(match => match.Match(uri.PathAndQuery).Success);
+        return this.Matches.Select(match => match.Match(uri.PathAndQuery)).FirstOrDefault(check => check.Success);
+    }
+
+    /// <summary>
+    /// Gets the embed HTML for the Provider
+    /// </summary>
+    /// <param name="provider">The provider.</param>
+    /// <param name="match">The match.</param>
+    /// <param name="url">The URL.</param>
+    /// <returns>OEmbed.Core.Response.</returns>
+    public virtual Response GetHtml(Provider provider, Match match, string url)
+    {
+        var response = new Response { Html = provider.Html.Replace("{url}", url), Type = ResponseType.Rich };
+
+        return response;
     }
 
     /// <summary>

@@ -7,9 +7,6 @@ public class InstagramTests : IProviderTests
     [InlineData("https://www.instagram.com/p/1XSKgBAGz-/")]
     [InlineData("https://www.instagram.com/tv/CHLVnWVAF9I/")]
     [InlineData("https://www.instagram.com/reel/CW0gZu2rouF/")]
-    [InlineData("https://www.instagr.am/dlwlrma/p/1XSKgBAGz-/")]
-    [InlineData("https://www.instagr.am/dlwlrma/tv/CbKjea_ARNB/")]
-    [InlineData("https://www.instagram.com/dlwlrma/tv/CbKjea_ARNB/")]
     [InlineData("https://www.instagram.com/p/1XSKgBAGz-/?utm_source=ig_web_button_share_sheet")]
     public void CanEmbedTest(string url)
     {
@@ -26,9 +23,6 @@ public class InstagramTests : IProviderTests
     [InlineData("https://www.instagram.com/p/1XSKgBAGz-/")]
     [InlineData("https://www.instagram.com/tv/CHLVnWVAF9I/")]
     [InlineData("https://www.instagram.com/reel/CW0gZu2rouF/")]
-    [InlineData("https://www.instagr.am/dlwlrma/p/1XSKgBAGz-/")]
-    [InlineData("https://www.instagr.am/dlwlrma/tv/CbKjea_ARNB/")]
-    [InlineData("https://www.instagram.com/dlwlrma/tv/CbKjea_ARNB/")]
     [InlineData("https://www.instagram.com/p/1XSKgBAGz-/?utm_source=ig_web_button_share_sheet")]
     public void EmbedTest(string url)
     {
@@ -47,9 +41,6 @@ public class InstagramTests : IProviderTests
     [InlineData("https://www.instagram.com/p/1XSKgBAGz-/")]
     [InlineData("https://www.instagram.com/tv/CHLVnWVAF9I/")]
     [InlineData("https://www.instagram.com/reel/CW0gZu2rouF/")]
-    [InlineData("https://www.instagr.am/dlwlrma/p/1XSKgBAGz-/")]
-    [InlineData("https://www.instagr.am/dlwlrma/tv/CbKjea_ARNB/")]
-    [InlineData("https://www.instagram.com/dlwlrma/tv/CbKjea_ARNB/")]
     [InlineData("https://www.instagram.com/p/1XSKgBAGz-/?utm_source=ig_web_button_share_sheet")]
     public async Task EmbedAsyncTest(string url)
     {

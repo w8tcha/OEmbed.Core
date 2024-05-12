@@ -97,14 +97,9 @@ public class OEmbed : IOEmbed
 
         var provider = Providers.Find(p => p.CanHandleUrl(uri));
 
-        if (provider == null)
-        {
-            return null;
-        }
+        var match = provider?.MatchScheme(uri);
 
-        var match = provider.MatchScheme(uri);
-
-        if (!match)
+        if (match is null || !match.Success)
         {
             return null;
         }
@@ -114,7 +109,7 @@ public class OEmbed : IOEmbed
             return (Response)Cache.Get(url);
         }
 
-        return string.IsNullOrEmpty(provider.Endpoint) ? GetHtml(provider, url) : this.GetJson(provider, url);
+        return string.IsNullOrEmpty(provider.Endpoint) ? provider.GetHtml(provider, match, url) : this.GetJson(provider, url);
     }
 #endif
 
@@ -135,14 +130,9 @@ public class OEmbed : IOEmbed
 
         var provider = this.Providers.Find(p => p.CanHandleUrl(uri));
 
-        if (provider == null)
-        {
-            return null;
-        }
+        var match = provider?.MatchScheme(uri);
 
-        var match = provider.MatchScheme(uri);
-
-        if (!match)
+        if (match is null || !match.Success)
         {
             return null;
         }
@@ -153,18 +143,11 @@ public class OEmbed : IOEmbed
         }
 
         return string.IsNullOrEmpty(provider.Endpoint)
-                   ? GetHtml(provider, url)
+                   ? provider.GetHtml(provider, match, url)
                    : await this.GetJsonAsync(provider, url);
     }
 
 #endif
-
-    private static Response GetHtml(Provider provider, string url)
-    {
-        var response = new Response { Html = provider.Html.Replace("{url}", url), Type = ResponseType.Rich };
-
-        return response;
-    }
 
 #if NET481
     /// <summary>
