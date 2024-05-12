@@ -1,5 +1,5 @@
 Copyright 2013 Tatsuro Shibamura
-Copyright 2023 Ingo Herbote
+Copyright 2024 Ingo Herbote
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
