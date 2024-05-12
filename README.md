@@ -1,6 +1,6 @@
 # OEmbed.Core
 
-![oembed](https://github.com/w8tcha/OEmbedSharp/assets/722575/1a3d14e1-8249-4fa3-a230-789127f12c2b)
+![oembed](https://github.com/w8tcha/OEmbed.Core/assets/722575/1a3d14e1-8249-4fa3-a230-789127f12c2b)
 
 C# [oEmbed](https://oembed.com) consumer library for .NET Framwork 4.8.1 and .NET (Core) 7/8
 
@@ -28,9 +28,9 @@ C# [oEmbed](https://oembed.com) consumer library for .NET Framwork 4.8.1 and .NE
 * Youtube.com
 
 ## Install
-via [NuGet](https://www.nuget.org/packages/OEmbedSharp):
+via [NuGet](https://www.nuget.org/packages/OEmbed.Core):
 ```
-PM> Install-Package OEmbedSharp
+PM> Install-Package OEmbed.Core
 ```
 
 ## DI configuration

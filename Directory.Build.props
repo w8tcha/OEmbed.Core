@@ -7,10 +7,10 @@
     <Company>Ingo Herbote</Company>
     <Copyright>&#169; Tatsuro Shibamura and Ingo Herbote</Copyright>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageProjectUrl>https://github.com/w8tcha/OEmbedSharp</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/w8tcha/OEmbed.Core</PackageProjectUrl>
     <PackageIcon>oembed.png</PackageIcon>
     <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/w8tcha/OEmbedSharp.git</RepositoryUrl>
+    <RepositoryUrl>https://github.com/w8tcha/OEmbed.Core.git</RepositoryUrl>
     <DebugType>embedded</DebugType>
     <LangVersion>latest</LangVersion>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
