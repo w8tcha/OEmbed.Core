@@ -24,7 +24,7 @@ public class TwitchTests : IProviderTests
     {
         var embed = new OEmbed();
 
-        var actual = embed.Embed(url);
+        var actual = embed.Embed(url, "localhost");
 
         Assert.NotNull(actual);
     }
@@ -39,7 +39,7 @@ public class TwitchTests : IProviderTests
     {
         var embed = new OEmbed();
 
-        var actual = await embed.EmbedAsync(url);
+        var actual = await embed.EmbedAsync(url, "localhost");
 
         Assert.NotNull(actual);
     }

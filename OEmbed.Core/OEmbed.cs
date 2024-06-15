@@ -1,10 +1,13 @@
-﻿namespace OEmbed.Core;
+﻿
+
+namespace OEmbed.Core;
 
 #if NET481
 using System.IO;
 #endif
 
 using System.Net;
+
 #if NET7_0_OR_GREATER
 using System.Net.Http;
 #endif
@@ -34,6 +37,7 @@ public class OEmbed : IOEmbed
         var assemblyName = type.Assembly.GetName();
 
         var agent = $"{type.Namespace}/{assemblyName!.Version!.Major}.{assemblyName!.Version!.Minor}";
+
 
 #if NET481
         this._userAgent = agent;
@@ -85,8 +89,9 @@ public class OEmbed : IOEmbed
     /// Embeds the specified URL.
     /// </summary>
     /// <param name="url">The URL.</param>
+    /// <param name="hostUrl">The host URL.</param>
     /// <returns>Response.</returns>
-    public Response Embed(string url)
+    public Response Embed(string url, string hostUrl = null)
     {
         if (url == null)
         {
@@ -109,7 +114,7 @@ public class OEmbed : IOEmbed
             return (Response)Cache.Get(url);
         }
 
-        return string.IsNullOrEmpty(provider.Endpoint) ? provider.GetHtml(provider, match, url) : this.GetJson(provider, url);
+        return string.IsNullOrEmpty(provider.Endpoint) ? provider.GetHtml(provider, match, url, hostUrl) : this.GetJson(provider, url);
     }
 #endif
 
@@ -118,8 +123,9 @@ public class OEmbed : IOEmbed
     /// Embeds the specified URL.
     /// </summary>
     /// <param name="url">The URL.</param>
+    /// <param name="hostUrl">The host URL.</param>
     /// <returns>Response.</returns>
-    public async Task<Response> EmbedAsync(string url)
+    public async Task<Response> EmbedAsync(string url, string hostUrl = null)
     {
         if (url == null)
         {
@@ -143,7 +149,7 @@ public class OEmbed : IOEmbed
         }
 
         return string.IsNullOrEmpty(provider.Endpoint)
-                   ? provider.GetHtml(provider, match, url)
+                   ? provider.GetHtml(provider, match, url, hostUrl)
                    : await this.GetJsonAsync(provider, url);
     }
 

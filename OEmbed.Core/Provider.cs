@@ -63,8 +63,9 @@ public abstract record Provider
     /// <param name="provider">The provider.</param>
     /// <param name="match">The match.</param>
     /// <param name="url">The URL.</param>
+    /// <param name="hostUrl">The host URL.</param>
     /// <returns>OEmbed.Core.Response.</returns>
-    public virtual Response GetHtml(Provider provider, Match match, string url)
+    public virtual Response GetHtml(Provider provider, Match match, string url, string hostUrl = null)
     {
         var response = new Response { Html = provider.Html.Replace("{url}", url), Type = ResponseType.Rich };
 

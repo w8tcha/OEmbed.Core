@@ -24,8 +24,9 @@ public interface IOEmbed
     /// Embeds the specified URL.
     /// </summary>
     /// <param name="url">The URL.</param>
+    /// <param name="hostUrl">The host URL.</param>
     /// <returns>Response.</returns>
-    Response Embed(string url);
+    Response Embed(string url, string hostUrl = null);
 #endif
 
 #if NET7_0_OR_GREATER
@@ -33,7 +34,8 @@ public interface IOEmbed
     /// Embeds the specified URL.
     /// </summary>
     /// <param name="url">The URL.</param>
+    /// <param name="hostUrl">The host URL.</param>
     /// <returns>Response.</returns>
-    Task<Response> EmbedAsync(string url);
+    Task<Response> EmbedAsync(string url, string hostUrl = null);
 #endif
 }
