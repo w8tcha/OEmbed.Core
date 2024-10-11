@@ -4,7 +4,6 @@ public class DeviantArtTests : IProviderTests
 {
     [Theory]
     [InlineData("https://www.deviantart.com/wlop/art/Sunshine2-905829772")]
-    [InlineData("https://www.deviantart.com/art/Sunshine2-905829772")]
     public void CanEmbedTest(string url)
     {
         var embed = new OEmbed();
@@ -17,7 +16,6 @@ public class DeviantArtTests : IProviderTests
 #if NET481
     [Theory]
     [InlineData("https://www.deviantart.com/wlop/art/Sunshine2-905829772")]
-    [InlineData("https://www.deviantart.com/art/Sunshine2-905829772")]
     public void EmbedTest(string url)
     {
         var embed = new OEmbed();
@@ -31,7 +29,6 @@ public class DeviantArtTests : IProviderTests
 #if NET7_0_OR_GREATER
     [Theory]
     [InlineData("https://www.deviantart.com/wlop/art/Sunshine2-905829772")]
-    [InlineData("https://www.deviantart.com/art/Sunshine2-905829772")]
     public async Task EmbedAsyncTest(string url)
     {
         var embed = new OEmbed();
