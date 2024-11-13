@@ -1,4 +1,4 @@
-﻿#if NET7_0_OR_GREATER
+﻿#if NET8_0_OR_GREATER
 namespace OEmbed.Core.Extensions;
 
 using Microsoft.Extensions.DependencyInjection;
@@ -17,10 +17,7 @@ public static class ServiceCollectionExtensions
     /// <returns>The <see cref="IServiceCollection"/> so that additional calls can be chained.</returns>
     public static IServiceCollection AddOEmbed(this IServiceCollection services)
     {
-        if (services == null)
-        {
-            throw new ArgumentNullException(nameof(services));
-        }
+        ArgumentNullException.ThrowIfNull(services);
 
         services.AddScoped<IOEmbed, OEmbed>();
 
