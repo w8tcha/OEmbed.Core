@@ -1,6 +1,12 @@
 Changelog
 ====================
 
+# OEmbed.Core v2.0.5
+* Added CloudflareStream Provider
+
+# OEmbed.Core v2.0.4
+* bug fixes
+
 # OEmbed.Core v2.0.3
 * Fixed Twitch Provider
 
