@@ -1,11 +1,14 @@
 ﻿namespace OEmbed.Core.Tests.ProviderTests;
 
-public class DailyMotionTests : IProviderTests
+/// <summary>
+/// Class CloudflareStreamTests.
+/// Implements the <see cref="IProviderTests" />
+/// </summary>
+/// <seealso cref="IProviderTests" />
+public class CloudflareStreamTests : IProviderTests
 {
     [Theory]
-    [InlineData("https://www.dailymotion.com/video/x87cx3z")]
-    [InlineData("https://dai.ly/x87cx3z")]
-    [InlineData("https://www.dailymotion.com/embed/video/x87cx3z?autoplay=1")]
+    [InlineData("https://customer-aw5py76sw8wyqzmh.cloudflarestream.com/2463f6d3e06fa29710a337f5f5389fd8/")]
     public void CanEmbedTest(string url)
     {
         var embed = new OEmbed();
@@ -17,9 +20,7 @@ public class DailyMotionTests : IProviderTests
 
 #if NET481
     [Theory]
-    [InlineData("https://www.dailymotion.com/video/x87cx3z")]
-    [InlineData("https://dai.ly/x87cx3z")]
-    [InlineData("https://www.dailymotion.com/embed/video/x87cx3z?autoplay=1")]
+    [InlineData("https://customer-aw5py76sw8wyqzmh.cloudflarestream.com/2463f6d3e06fa29710a337f5f5389fd8/")]
     public void EmbedTest(string url)
     {
         var embed = new OEmbed();
@@ -32,9 +33,7 @@ public class DailyMotionTests : IProviderTests
 
 #if NET8_0_OR_GREATER
     [Theory]
-    [InlineData("https://www.dailymotion.com/video/x87cx3z")]
-    [InlineData("https://dai.ly/x87cx3z")]
-    [InlineData("https://www.dailymotion.com/embed/video/x87cx3z?autoplay=1")]
+    [InlineData("https://customer-aw5py76sw8wyqzmh.cloudflarestream.com/2463f6d3e06fa29710a337f5f5389fd8/")]
     public async Task EmbedAsyncTest(string url)
     {
         var embed = new OEmbed();

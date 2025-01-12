@@ -30,7 +30,7 @@ public class TwitchTests : IProviderTests
     }
 #endif
 
-#if NET7_0_OR_GREATER
+#if NET8_0_OR_GREATER
     [Theory]
     [InlineData("https://www.twitch.tv/therealknossi")]
     [InlineData("https://www.twitch.tv/videos/2141265767")]

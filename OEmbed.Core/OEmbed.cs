@@ -8,7 +8,7 @@ using System.IO;
 
 using System.Net;
 
-#if NET7_0_OR_GREATER
+#if NET8_0_OR_GREATER
 using System.Net.Http;
 #endif
 using System.Runtime.Caching;
@@ -43,7 +43,7 @@ public class OEmbed : IOEmbed
         this._userAgent = agent;
 #endif
 
-#if NET7_0_OR_GREATER
+#if NET8_0_OR_GREATER
         this._httpClient = new HttpClient();
         this._httpClient.DefaultRequestHeaders.UserAgent.ParseAdd(agent);
 #endif
@@ -53,7 +53,7 @@ public class OEmbed : IOEmbed
     private readonly string _userAgent;
 #endif
 
-#if NET7_0_OR_GREATER
+#if NET8_0_OR_GREATER
     private readonly HttpClient _httpClient;
 #endif
 
@@ -118,7 +118,7 @@ public class OEmbed : IOEmbed
     }
 #endif
 
-#if NET7_0_OR_GREATER
+#if NET8_0_OR_GREATER
     /// <summary>
     /// Embeds the specified URL.
     /// </summary>
@@ -201,7 +201,7 @@ public class OEmbed : IOEmbed
     }
 #endif
 
-#if NET7_0_OR_GREATER
+#if NET8_0_OR_GREATER
     /// <summary>
     /// Get the oEmbed JSON
     /// </summary>

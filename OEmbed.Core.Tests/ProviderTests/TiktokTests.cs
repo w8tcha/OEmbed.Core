@@ -17,7 +17,6 @@ public class TikTokTests : IProviderTests
     }
 
 #if NET481
-
     [Theory]
     [InlineData("https://m.tiktok.com/v/6934593663062265094.html")]
     [InlineData("https://www.tiktok.com/@faaaariii_/video/6934593663062265094")]
@@ -33,7 +32,7 @@ public class TikTokTests : IProviderTests
     }
 #endif
 
-#if NET7_0_OR_GREATER
+#if NET8_0_OR_GREATER
     [Theory]
     [InlineData("https://m.tiktok.com/v/6934593663062265094.html")]
     [InlineData("https://www.tiktok.com/@faaaariii_/video/6934593663062265094")]

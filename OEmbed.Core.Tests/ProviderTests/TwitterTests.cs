@@ -32,7 +32,7 @@ public class TwitterTests : IProviderTests
     }
 #endif
 
-#if NET7_0_OR_GREATER
+#if NET8_0_OR_GREATER
     [Theory]
     [InlineData("https://twitter.com/SpaceX/status/1732824684683784516")]
     [InlineData("https://x.com/SpaceX/status/1732824684683784516")]

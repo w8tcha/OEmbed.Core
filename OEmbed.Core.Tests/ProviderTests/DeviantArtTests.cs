@@ -26,7 +26,7 @@ public class DeviantArtTests : IProviderTests
     }
 #endif
 
-#if NET7_0_OR_GREATER
+#if NET8_0_OR_GREATER
     [Theory]
     [InlineData("https://www.deviantart.com/wlop/art/Sunshine2-905829772")]
     public async Task EmbedAsyncTest(string url)

@@ -44,7 +44,9 @@ public abstract record Provider
     /// <returns>bool.</returns>
     public virtual bool CanHandleUrl(Uri uri)
     {
-        return this.Hosts.Contains(uri.Host);
+        var contains = this.Hosts.Contains(uri.Host);
+
+        return contains || this.Hosts.Select(hosts => uri.Host.Contains(hosts)).FirstOrDefault();
     }
 
     /// <summary>
@@ -54,7 +56,12 @@ public abstract record Provider
     /// <returns>bool.</returns>
     public virtual Match MatchScheme(Uri uri)
     {
-        return this.Matches.Select(match => match.Match(uri.PathAndQuery)).FirstOrDefault(check => check.Success);
+        var matchedScheme = this.Matches.Select(match => match.Match(uri.PathAndQuery))
+                                .FirstOrDefault(check => check.Success) ??
+                            this.Matches.Select(match => match.Match(uri.AbsoluteUri))
+                                .FirstOrDefault(check => check.Success);
+
+        return matchedScheme;
     }
 
     /// <summary>
