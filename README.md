@@ -9,6 +9,7 @@ C# [oEmbed](https://oembed.com) consumer library for .NET Framwork 4.8.1 and .NE
 [![build dotnet](https://github.com/w8tcha/OEmbed.Core/actions/workflows/build.yml/badge.svg)](https://github.com/w8tcha/OEmbed.Core/actions/workflows/build.yml)
 
 ### Supported Providers
+* CloudFlareStreams.com
 * CodePen.io
 * DailyMotion.com
 * Deezer.com
@@ -23,6 +24,7 @@ C# [oEmbed](https://oembed.com) consumer library for .NET Framwork 4.8.1 and .NE
 * Soundcloud.com
 * Spotify.com
 * Tiktok.com
+* Twitch.tv
 * Twitter.com
 * Vimeo.com
 * Youtube.com
