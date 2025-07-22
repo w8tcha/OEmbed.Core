@@ -1,6 +1,10 @@
 Changelog
 ====================
 
+# OEmbed.Core v2.0.6
+* Validate Url
+
+
 # OEmbed.Core v2.0.5
 * Added CloudflareStream Provider
 
