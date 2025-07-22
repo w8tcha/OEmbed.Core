@@ -10,6 +10,7 @@ using System.Net;
 
 #if NET8_0_OR_GREATER
 using System.Net.Http;
+using System.Diagnostics.CodeAnalysis;
 #endif
 using System.Runtime.Caching;
 
@@ -235,10 +236,11 @@ public class OEmbed : IOEmbed
     /// Returns indicating whether the value is a valid Url
     /// </returns>
 #if NET481
-    private bool IsValidUrl(string url)
+    private static bool IsValidUrl(string url)
 #else
     private bool IsValidUrl([StringSyntax(StringSyntaxAttribute.Uri)] string url)
 #endif
+
     {
         try
         {
