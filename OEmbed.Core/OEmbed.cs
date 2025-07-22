@@ -93,7 +93,7 @@ public class OEmbed : IOEmbed
     /// <returns>Response.</returns>
     public Response Embed(string url, string hostUrl = null)
     {
-        if (url == null)
+        if (!IsValidUrl(url))
         {
             return null;
         }
@@ -127,7 +127,7 @@ public class OEmbed : IOEmbed
     /// <returns>Response.</returns>
     public async Task<Response> EmbedAsync(string url, string hostUrl = null)
     {
-        if (url == null)
+        if (!IsValidUrl(url))
         {
             return null;
         }
@@ -224,4 +224,30 @@ public class OEmbed : IOEmbed
         return response;
     }
 #endif
+
+    /// <summary>
+    /// Checks if string is an valid Url.
+    /// </summary>
+    /// <param name="url">
+    /// The url string to check
+    /// </param>
+    /// <returns>
+    /// Returns indicating whether the value is a valid Url
+    /// </returns>
+#if NET481
+    private bool IsValidUrl(string url)
+#else
+    private bool IsValidUrl([StringSyntax(StringSyntaxAttribute.Uri)] string url)
+#endif
+    {
+        try
+        {
+            _ = new Uri(url, UriKind.Absolute);
+            return true;
+        }
+        catch (Exception)
+        {
+            return false;
+        }
+    }
 }
