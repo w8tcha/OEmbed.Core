@@ -30,7 +30,7 @@ public class OEmbed : IOEmbed
     /// </summary>
     public OEmbed()
     {
-        this.Providers = new ProviderList().GetProviders();
+        this.Providers = ProviderList.GetProviders();
 
         this._options = new Options();
 
@@ -238,7 +238,7 @@ public class OEmbed : IOEmbed
 #if NET481
     private static bool IsValidUrl(string url)
 #else
-    private bool IsValidUrl([StringSyntax(StringSyntaxAttribute.Uri)] string url)
+    private static bool IsValidUrl([StringSyntax(StringSyntaxAttribute.Uri)] string url)
 #endif
 
     {

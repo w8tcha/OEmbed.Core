@@ -5,13 +5,13 @@ using System.Linq;
 /// <summary>
 /// Class ProviderList.
 /// </summary>
-public class ProviderList
+public static class ProviderList
 {
     /// <summary>
     /// Gets the oEmbed providers.
     /// </summary>
     /// <returns>List&lt;Provider&gt;.</returns>
-    public List<Provider> GetProviders()
+    public static List<Provider> GetProviders()
     {
        return
        [
