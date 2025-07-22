@@ -1,6 +1,6 @@
 # OEmbed.Core
 
-![oembed](https://github.com/w8tcha/OEmbed.Core/assets/722575/1a3d14e1-8249-4fa3-a230-789127f12c2b)
+![oembed](https://raw.githubusercontent.com/w8tcha/OEmbed.Core/master/oembed.png)
 
 C# [oEmbed](https://oembed.com) consumer library for .NET Framwork 4.8.1 and .NET (Core) 8/9
 
