@@ -5,7 +5,7 @@
 	  <AssemblyVersion>2.0.6</AssemblyVersion>
     <Authors>Tatsuro Shibamura;Ingo Herbote</Authors>
     <Company>Ingo Herbote</Company>
-    <Copyright>&#169; Tatsuro Shibamura and Ingo Herbote</Copyright>
+    <Copyright>© Tatsuro Shibamura and Ingo Herbote</Copyright>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageProjectUrl>https://github.com/w8tcha/OEmbed.Core</PackageProjectUrl>
     <PackageIcon>oembed.png</PackageIcon>
