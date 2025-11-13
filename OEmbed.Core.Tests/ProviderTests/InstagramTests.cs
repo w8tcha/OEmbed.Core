@@ -35,7 +35,7 @@ public class InstagramTests : IProviderTests
 
 #endif
 
-#if NET8_0_OR_GREATER
+#if NET9_0_OR_GREATER
     [Theory]
     [InlineData("https://www.instagram.com/dlwlrma/")]
     [InlineData("https://www.instagram.com/p/1XSKgBAGz-/")]

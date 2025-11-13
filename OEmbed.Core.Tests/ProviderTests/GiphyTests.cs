@@ -37,7 +37,7 @@ public class GiphyTests : IProviderTests
     }
 #endif
 
-#if NET8_0_OR_GREATER
+#if NET9_0_OR_GREATER
     [Theory]
     [InlineData("https://giphy.com/gifs/confused-iu-looking-up-l2YWwjl8T5tdGiaf6")]
     [InlineData("https://www.giphy.com/gifs/confused-iu-looking-up-l2YWwjl8T5tdGiaf6")]

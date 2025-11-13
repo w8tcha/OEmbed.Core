@@ -31,7 +31,7 @@ public class SoundCloudTests : IProviderTests
     }
 #endif
 
-#if NET8_0_OR_GREATER
+#if NET9_0_OR_GREATER
     [Theory]
     [InlineData("https://soundcloud.com/blackpinkofficial")]
     [InlineData("https://soundcloud.com/blackpinkofficial/whistle")]

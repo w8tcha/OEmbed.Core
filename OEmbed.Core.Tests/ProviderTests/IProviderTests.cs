@@ -11,7 +11,7 @@ public interface IProviderTests
     void EmbedTest(string url);
 #endif
 
-#if NET8_0_OR_GREATER
+#if NET9_0_OR_GREATER
     Task EmbedAsyncTest(string url);
 #endif
 }

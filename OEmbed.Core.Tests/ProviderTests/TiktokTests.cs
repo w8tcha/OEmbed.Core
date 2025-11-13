@@ -32,7 +32,7 @@ public class TikTokTests : IProviderTests
     }
 #endif
 
-#if NET8_0_OR_GREATER
+#if NET9_0_OR_GREATER
     [Theory]
     [InlineData("https://m.tiktok.com/v/6934593663062265094.html")]
     [InlineData("https://www.tiktok.com/@faaaariii_/video/6934593663062265094")]

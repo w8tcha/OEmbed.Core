@@ -36,7 +36,7 @@ public class VimeoTests : IProviderTests
     }
 #endif
 
-#if NET8_0_OR_GREATER
+#if NET9_0_OR_GREATER
     [Theory]
     [InlineData("https://vimeo.com/22439234")]
     [InlineData("https://vimeo.com/22439234?embedded=true&source=video_title&owner=910279")]

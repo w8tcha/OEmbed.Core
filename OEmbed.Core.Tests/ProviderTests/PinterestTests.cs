@@ -27,7 +27,7 @@ public class PinterestTests : IProviderTests
     }
 #endif
 
-#if NET8_0_OR_GREATER
+#if NET9_0_OR_GREATER
     [Theory]
     [InlineData("https://www.pinterest.com/pin/6896205669260457/")]
     public async Task EmbedAsyncTest(string url)
