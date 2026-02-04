@@ -10,18 +10,21 @@ using global::OEmbed.Core.Interfaces;
 /// </summary>
 public static class ServiceCollectionExtensions
 {
-    /// <summary>
-    /// Adds browser detection services to the specified <see cref="IServiceCollection" />.
-    /// </summary>
     /// <param name="services">The <see cref="IServiceCollection" /> to add services to.</param>
-    /// <returns>The <see cref="IServiceCollection"/> so that additional calls can be chained.</returns>
-    public static IServiceCollection AddOEmbed(this IServiceCollection services)
+    extension(IServiceCollection services)
     {
-        ArgumentNullException.ThrowIfNull(services);
+        /// <summary>
+        /// Adds browser detection services to the specified <see cref="IServiceCollection" />.
+        /// </summary>
+        /// <returns>The <see cref="IServiceCollection"/> so that additional calls can be chained.</returns>
+        public IServiceCollection AddOEmbed()
+        {
+            ArgumentNullException.ThrowIfNull(services);
 
-        services.AddScoped<IOEmbed, OEmbed>();
+            services.AddScoped<IOEmbed, OEmbed>();
 
-        return services;
+            return services;
+        }
     }
 }
 
