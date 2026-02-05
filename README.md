@@ -2,7 +2,7 @@
 
 ![oembed](https://raw.githubusercontent.com/w8tcha/OEmbed.Core/master/oembed.png)
 
-C# [oEmbed](https://oembed.com) consumer library for .NET Framwork 4.8.1 and .NET (Core) 8/9
+C# [oEmbed](https://oembed.com) consumer library for .NET Framwork 4.8.1 and .NET (Core) 9/10
 
 [![NuGet](https://img.shields.io/nuget/v/OEmbed.Core.svg)](https://nuget.org/packages/OEmbed.Core)
 
@@ -10,7 +10,6 @@ C# [oEmbed](https://oembed.com) consumer library for .NET Framwork 4.8.1 and .NE
 
 ### Supported Providers
 * CloudFlareStreams.com
-* CodePen.io
 * DailyMotion.com
 * Deezer.com
 * Deviantart.com
