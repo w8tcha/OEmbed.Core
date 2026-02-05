@@ -5,7 +5,7 @@
 	  <AssemblyVersion>2.0.6</AssemblyVersion>
     <Authors>Tatsuro Shibamura;Ingo Herbote</Authors>
     <Company>Ingo Herbote</Company>
-    <Copyright>© Tatsuro Shibamura and Ingo Herbote</Copyright>
+    <Copyright>&#169; Tatsuro Shibamura and Ingo Herbote</Copyright>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageProjectUrl>https://github.com/w8tcha/OEmbed.Core</PackageProjectUrl>
     <PackageIcon>oembed.png</PackageIcon>
@@ -15,7 +15,7 @@
     <LangVersion>latest</LangVersion>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
+    <GenerateAssemblyVersionAttribute>true</GenerateAssemblyVersionAttribute>
     <NoWarn>$(NoWarn);1591;CS3001;CS3002;CS3003;CS3005;CS3009;CS3015;CS3024;CS3027</NoWarn>
   </PropertyGroup>
 
