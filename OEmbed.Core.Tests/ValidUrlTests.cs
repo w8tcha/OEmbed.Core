@@ -3,28 +3,26 @@
 public class ValidUrlTests
 {
 #if NET481
-    [Theory]
-    [InlineData("testing")]
+    [TestCase("testing")]
     public void NotValidUrlTest(string url)
     {
         var embed = new OEmbed();
 
         var actual = embed.Embed(url);
 
-        Assert.Null(actual);
+        actual.Should().BeNull();
     }
 #endif
 
 #if NET9_0_OR_GREATER
-    [Theory]
-    [InlineData("testing")]
+    [TestCase("testing")]
     public async Task NotValidUrlTest(string url)
     {
         var embed = new OEmbed();
 
         var actual = await embed.EmbedAsync(url);
 
-        Assert.Null(actual);
+        actual.Should().BeNull();
     }
 #endif
 }

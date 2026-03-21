@@ -3,4 +3,6 @@
 #if NET9_0_OR_GREATER
 global using System.Threading.Tasks;
 #endif
-global using Xunit;
+global using AwesomeAssertions;
+
+global using NUnit.Framework;
