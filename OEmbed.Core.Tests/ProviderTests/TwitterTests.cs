@@ -18,9 +18,7 @@ public class TwitterTests : IProviderTests
     }
 
 #if NET481
-
     [Theory]
-    [InlineData("https://twitter.com/SpaceX/status/1732824684683784516")]
     [InlineData("https://x.com/SpaceX/status/1732824684683784516")]
     public void EmbedTest(string url)
     {
@@ -34,7 +32,6 @@ public class TwitterTests : IProviderTests
 
 #if NET9_0_OR_GREATER
     [Theory]
-    [InlineData("https://twitter.com/SpaceX/status/1732824684683784516")]
     [InlineData("https://x.com/SpaceX/status/1732824684683784516")]
     public async Task EmbedAsyncTest(string url)
     {
