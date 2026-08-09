@@ -31,7 +31,7 @@ jobs:
         id: version
         shell: bash
         run: |
-          VERSION=$(grep -m1 -oE '<Version>[^<]+</Version>' OEmbed.Core/OEmbed.Core.csproj | sed -E 's/<\/?Version>//g')
+          VERSION=$(grep -m1 -oE '<Version>[^<]+</Version>' Directory.Build.props | sed -E 's/<\/?Version>//g')
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
       - name: Check if release tag already exists
