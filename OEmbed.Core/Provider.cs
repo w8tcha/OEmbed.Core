@@ -44,9 +44,9 @@ public abstract record Provider
     /// <returns>bool.</returns>
     public virtual bool CanHandleUrl(Uri uri)
     {
-        var contains = this.Hosts.Contains(uri.Host);
-
-        return contains || this.Hosts.Select(hosts => uri.Host.Contains(hosts)).FirstOrDefault();
+        return this.Hosts.Any(host =>
+            uri.Host.Equals(host, StringComparison.OrdinalIgnoreCase) ||
+            uri.Host.EndsWith($".{host}", StringComparison.OrdinalIgnoreCase));
     }
 
     /// <summary>
@@ -56,12 +56,19 @@ public abstract record Provider
     /// <returns>bool.</returns>
     public virtual Match MatchScheme(Uri uri)
     {
-        var matchedScheme = this.Matches.Select(match => match.Match(uri.PathAndQuery))
-                                .FirstOrDefault(check => check.Success) ??
-                            this.Matches.Select(match => match.Match(uri.AbsoluteUri))
-                                .FirstOrDefault(check => check.Success);
+        try
+        {
+            var matchedScheme = this.Matches.Select(match => match.Match(uri.PathAndQuery))
+                                    .FirstOrDefault(check => check.Success) ??
+                                this.Matches.Select(match => match.Match(uri.AbsoluteUri))
+                                    .FirstOrDefault(check => check.Success);
 
-        return matchedScheme;
+            return matchedScheme;
+        }
+        catch (RegexMatchTimeoutException)
+        {
+            return null;
+        }
     }
 
     /// <summary>
@@ -74,10 +81,17 @@ public abstract record Provider
     /// <returns>OEmbed.Core.Response.</returns>
     public virtual Response GetHtml(Provider provider, Match match, string url, string hostUrl = null)
     {
-        var response = new Response { Html = provider.Html.Replace("{url}", url), Type = ResponseType.Rich };
+        var response = new Response { Html = provider.Html.Replace("{url}", Encode(url)), Type = ResponseType.Rich };
 
         return response;
     }
+
+    /// <summary>
+    /// HTML-encodes a value before it is embedded into a rendered HTML template, so that
+    /// caller-controlled URL parts can never break out of an HTML attribute.
+    /// </summary>
+    /// <param name="value">The value.</param>
+    protected static string Encode(string value) => System.Net.WebUtility.HtmlEncode(value);
 
     /// <summary>
     /// Add matches.
@@ -87,7 +101,10 @@ public abstract record Provider
     {
         foreach (var pattern in patterns)
         {
-            this.Matches.Add(new Regex($"^{pattern}$", RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled));
+            this.Matches.Add(new Regex(
+                $"^{pattern}$",
+                RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled,
+                TimeSpan.FromMilliseconds(500)));
         }
     }
 }

@@ -28,34 +28,44 @@ public class OEmbed : IOEmbed
     /// <summary>
     /// Initializes a new instance of the <see cref="OEmbed"/> class.
     /// </summary>
-    public OEmbed()
+    public OEmbed() : this(new Options())
+    {
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="OEmbed"/> class.
+    /// </summary>
+    /// <param name="options">The options.</param>
+    public OEmbed(Options options)
     {
         this.Providers = ProviderList.GetProviders();
 
-        this._options = new Options();
+        this._options = options ?? new Options();
+    }
 
+    private static string BuildUserAgent()
+    {
         var type = typeof(OEmbed);
         var assemblyName = type.Assembly.GetName();
 
-        var agent = $"{type.Namespace}/{assemblyName!.Version!.Major}.{assemblyName!.Version!.Minor}";
-
-
-#if NET481
-        this._userAgent = agent;
-#endif
-
-#if NET9_0_OR_GREATER
-        this._httpClient = new HttpClient();
-        this._httpClient.DefaultRequestHeaders.UserAgent.ParseAdd(agent);
-#endif
+        return $"{type.Namespace}/{assemblyName.Version.Major}.{assemblyName.Version.Minor}";
     }
 
 #if NET481
-    private readonly string _userAgent;
+    private static readonly string _userAgent = BuildUserAgent();
 #endif
 
 #if NET9_0_OR_GREATER
-    private readonly HttpClient _httpClient;
+    // Shared for the lifetime of the process, matching the officially recommended HttpClient usage pattern -
+    // avoids one HttpClient (and its own socket pool) being created per OEmbed instance/DI scope and never disposed.
+    private static readonly HttpClient _httpClient = CreateHttpClient();
+
+    private static HttpClient CreateHttpClient()
+    {
+        var client = new HttpClient();
+        client.DefaultRequestHeaders.UserAgent.ParseAdd(BuildUserAgent());
+        return client;
+    }
 #endif
 
     private readonly Options _options;
@@ -110,7 +120,7 @@ public class OEmbed : IOEmbed
             return null;
         }
 
-        if (Cache.Contains(url))
+        if (this._options.EnableCache && Cache.Contains(url))
         {
             return (Response)Cache.Get(url);
         }
@@ -144,7 +154,7 @@ public class OEmbed : IOEmbed
             return null;
         }
 
-        if (Cache.Contains(url))
+        if (this._options.EnableCache && Cache.Contains(url))
         {
             return (Response)Cache.Get(url);
         }
@@ -169,7 +179,7 @@ public class OEmbed : IOEmbed
 
         var webRequest = (HttpWebRequest)WebRequest.Create(endpoint);
 
-        webRequest.UserAgent = this._userAgent;
+        webRequest.UserAgent = _userAgent;
 
         try
         {
@@ -188,7 +198,7 @@ public class OEmbed : IOEmbed
 
             var response = JsonConvert.DeserializeObject<Response>(content);
 
-            if (this._options.EnableCache)
+            if (this._options.EnableCache && response is not null)
             {
                 Cache.Add(url, response, DateTimeOffset.Now.AddDays(1));
             }
@@ -213,16 +223,23 @@ public class OEmbed : IOEmbed
     {
         var endpoint = $"{provider.Endpoint}?url={WebUtility.UrlEncode(url)}&format=json";
 
-        var content = await this._httpClient.GetStringAsync(endpoint);
-
-        var response = JsonConvert.DeserializeObject<Response>(content);
-
-        if (this._options.EnableCache)
+        try
         {
-            Cache.Add(url, response, DateTimeOffset.Now.AddDays(1));
-        }
+            var content = await _httpClient.GetStringAsync(endpoint);
 
-        return response;
+            var response = JsonConvert.DeserializeObject<Response>(content);
+
+            if (this._options.EnableCache && response is not null)
+            {
+                Cache.Add(url, response, DateTimeOffset.Now.AddDays(1));
+            }
+
+            return response;
+        }
+        catch (Exception)
+        {
+            return null;
+        }
     }
 #endif
 

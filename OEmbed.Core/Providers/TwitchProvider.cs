@@ -43,7 +43,7 @@ public record TwitchProvider : Provider
             return new Response
             {
                 Html = $"""
-                        <iframe src="https://player.twitch.tv/?video={match.Groups["videoId"].Value}&parent={hostUrl}&autoplay=false" height="720" width="1280" allowfullscreen></iframe>
+                        <iframe src="https://player.twitch.tv/?video={Encode(match.Groups["videoId"].Value)}&parent={Encode(hostUrl)}&autoplay=false" height="720" width="1280" allowfullscreen></iframe>
                         """,
                 Type = ResponseType.Rich
             };
@@ -54,7 +54,7 @@ public record TwitchProvider : Provider
             return new Response
             {
                 Html = $"""
-                        <iframe src="https://player.twitch.tv/?collection={match.Groups["clipId"].Value}&parent={hostUrl}" height="720" width="1280" allowfullscreen></iframe>
+                        <iframe src="https://player.twitch.tv/?collection={Encode(match.Groups["clipId"].Value)}&parent={Encode(hostUrl)}" height="720" width="1280" allowfullscreen></iframe>
                         """,
                 Type = ResponseType.Rich
             };
@@ -65,12 +65,12 @@ public record TwitchProvider : Provider
             return new Response
             {
                 Html = $"""
-                        <iframe src="https://player.twitch.tv/?channel={match.Groups["channel"].Value}&parent={hostUrl}&muted=true" height="720" width="1280" allowfullscreen></iframe>
+                        <iframe src="https://player.twitch.tv/?channel={Encode(match.Groups["channel"].Value)}&parent={Encode(hostUrl)}&muted=true" height="720" width="1280" allowfullscreen></iframe>
                         """,
                 Type = ResponseType.Rich
             };
         }
 
-        return new Response { Html = provider.Html.Replace("{url}", url), Type = ResponseType.Rich };
+        return new Response { Html = provider.Html.Replace("{url}", Encode(url)), Type = ResponseType.Rich };
     }
 }

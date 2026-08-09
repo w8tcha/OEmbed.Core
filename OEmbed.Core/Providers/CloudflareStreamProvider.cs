@@ -34,7 +34,7 @@ public record CloudflareStreamProvider : Provider
         return new Response
         {
             Html = $"""
-                    <iframe src="https://customer-{match.Groups["customerId"].Value}.cloudflarestream.com/{match.Groups["videoId"].Value}/iframe" 
+                    <iframe src="https://customer-{Encode(match.Groups["customerId"].Value)}.cloudflarestream.com/{Encode(match.Groups["videoId"].Value)}/iframe"
                     height="400" width="400"
                     allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" allowfullscreen></iframe>
                     """,

@@ -16,12 +16,16 @@ public static class ServiceCollectionExtensions
         /// <summary>
         /// Adds browser detection services to the specified <see cref="IServiceCollection" />.
         /// </summary>
+        /// <param name="configureOptions">An optional callback to configure the <see cref="Options"/>.</param>
         /// <returns>The <see cref="IServiceCollection"/> so that additional calls can be chained.</returns>
-        public IServiceCollection AddOEmbed()
+        public IServiceCollection AddOEmbed(Action<Options> configureOptions = null)
         {
             ArgumentNullException.ThrowIfNull(services);
 
-            services.AddScoped<IOEmbed, OEmbed>();
+            var options = new Options();
+            configureOptions?.Invoke(options);
+
+            services.AddScoped<IOEmbed>(_ => new OEmbed(options));
 
             return services;
         }

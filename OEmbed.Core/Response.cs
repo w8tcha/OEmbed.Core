@@ -119,7 +119,8 @@ public class Response
             ResponseType.Photo => string.Format(PhotoTemplate, this.Url, this.Title),
             ResponseType.Link => string.Format(LinkTemplate, this.AuthorUrl, this.Title ?? this.AuthorName),
             ResponseType.Rich => this.Html,
-            _ => throw new InvalidOperationException()
+            _ when !string.IsNullOrEmpty(this.Html) => this.Html,
+            _ => throw new InvalidOperationException($"Unable to render oEmbed response: unknown type '{this.Type}' and no Html to fall back to.")
         };
     }
 }
