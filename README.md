@@ -9,19 +9,30 @@ C# [oEmbed](https://oembed.com) consumer library for .NET Framwork 4.8.1 and .NE
 [![build dotnet](https://github.com/w8tcha/OEmbed.Core/actions/workflows/build.yml/badge.svg)](https://github.com/w8tcha/OEmbed.Core/actions/workflows/build.yml)
 
 ### Supported Providers
+* Bsky.app
 * CloudFlareStreams.com
 * DailyMotion.com
 * Deezer.com
 * Deviantart.com
 * Facebook.com
 * Flickr.com
+* GettyImages.com
 * Giphy.com
 * Gist.GitHub.com
+* Imgur.com
 * Instagram.com
+* Issuu.com
+* Loom.com
+* Mixcloud.com
 * Pinterest.com
 * Reddit.com
+* Scribd.com
+* Sketchfab.com
 * Soundcloud.com
+* SpeakerDeck.com
 * Spotify.com
+* Streamable.com
+* Ted.com
 * Tiktok.com
 * Twitch.tv
 * Twitter.com
