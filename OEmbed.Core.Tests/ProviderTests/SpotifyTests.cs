@@ -12,14 +12,11 @@ public class SpotifyTests : IProviderTests
    [TestCase("https://open.spotify.com/user/spotify/playlist/37i9dQZF1DX0y9CwEpdGpz")]
     public void CanEmbedTest(string url)
     {
-        var embed = new OEmbed();
-
-        var canEmbed = embed.CanEmbed(url);
-
-        canEmbed.Should().BeTrue();
+        ProviderAssert.Handles<SpotifyProvider>(url);
     }
 
 #if NET481
+    [Category("Integration")]
 
     
    [TestCase("https://open.spotify.com/artist/3HqSLMAZ3g3d5poNaI7GOU")]
@@ -40,6 +37,7 @@ public class SpotifyTests : IProviderTests
 #endif
 
 #if NET9_0_OR_GREATER
+    [Category("Integration")]
     
    [TestCase("https://open.spotify.com/artist/3HqSLMAZ3g3d5poNaI7GOU")]
    [TestCase("https://open.spotify.com/album/2xEH7SRzJq7LgA0fCtTlxH")]

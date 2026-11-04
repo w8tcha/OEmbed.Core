@@ -6,14 +6,11 @@ public class PinterestTests : IProviderTests
    [TestCase("https://www.pinterest.com/pin/6896205669260457/")]
     public void CanEmbedTest(string url)
     {
-        var embed = new OEmbed();
-
-        var canEmbed = embed.CanEmbed(url);
-
-        canEmbed.Should().BeTrue();
+        ProviderAssert.Handles<PinterestProvider>(url);
     }
 
 #if NET481
+    [Category("Integration")]
 
     
    [TestCase("https://www.pinterest.com/pin/6896205669260457/")]
@@ -28,6 +25,7 @@ public class PinterestTests : IProviderTests
 #endif
 
 #if NET9_0_OR_GREATER
+    [Category("Integration")]
     
    [TestCase("https://www.pinterest.com/pin/6896205669260457/")]
     public async Task EmbedAsyncTest(string url)

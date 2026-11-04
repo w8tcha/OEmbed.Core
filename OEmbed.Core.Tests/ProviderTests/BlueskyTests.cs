@@ -1,18 +1,15 @@
-namespace OEmbed.Core.Tests.ProviderTests;
+﻿namespace OEmbed.Core.Tests.ProviderTests;
 
 public class BlueskyTests : IProviderTests
 {
    [TestCase("https://bsky.app/profile/chriskenny.bsky.social/post/3loagm2phgk2t")]
     public void CanEmbedTest(string url)
     {
-        var embed = new OEmbed();
-
-        var canEmbed = embed.CanEmbed(url);
-
-        canEmbed.Should().BeTrue();
+        ProviderAssert.Handles<BlueskyProvider>(url);
     }
 
 #if NET481
+    [Category("Integration")]
    [TestCase("https://bsky.app/profile/chriskenny.bsky.social/post/3loagm2phgk2t")]
     public void EmbedTest(string url)
     {
@@ -25,6 +22,7 @@ public class BlueskyTests : IProviderTests
 #endif
 
 #if NET9_0_OR_GREATER
+    [Category("Integration")]
    [TestCase("https://bsky.app/profile/chriskenny.bsky.social/post/3loagm2phgk2t")]
     public async Task EmbedAsyncTest(string url)
     {

@@ -1,6 +1,11 @@
 Changelog
 ====================
 
+# OEmbed.Core v2.0.7
+* Fixed Twitch clip embeds (now uses clips.twitch.tv/embed)
+* Response.Render() now HTML-encodes photo/link values and ignores non-http(s) URLs
+* Offline unit tests and code coverage
+
 # OEmbed.Core v2.0.6
 * Validate Url
 

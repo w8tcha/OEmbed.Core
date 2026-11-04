@@ -9,14 +9,11 @@ public class TikTokTests : IProviderTests
    [TestCase("https://www.tiktok.com/@faaaariii_")]
     public void CanEmbedTest(string url)
     {
-        var embed = new OEmbed();
-
-        var canEmbed = embed.CanEmbed(url);
-
-        canEmbed.Should().BeTrue();
+        ProviderAssert.Handles<TikTokProvider>(url);
     }
 
 #if NET481
+    [Category("Integration")]
     
    [TestCase("https://m.tiktok.com/v/6934593663062265094.html")]
    [TestCase("https://www.tiktok.com/@faaaariii_/video/6934593663062265094")]
@@ -33,6 +30,7 @@ public class TikTokTests : IProviderTests
 #endif
 
 #if NET9_0_OR_GREATER
+    [Category("Integration")]
     
    [TestCase("https://m.tiktok.com/v/6934593663062265094.html")]
    [TestCase("https://www.tiktok.com/@faaaariii_/video/6934593663062265094")]

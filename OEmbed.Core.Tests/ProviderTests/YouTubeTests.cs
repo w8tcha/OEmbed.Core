@@ -21,14 +21,11 @@ public class YouTubeTests : IProviderTests
    [TestCase("https://www.youtube.com/live/jfKfPfyJRdk?feature=share")]
     public void CanEmbedTest(string url)
     {
-        var embed = new OEmbed();
-
-        var canEmbed = embed.CanEmbed(url);
-
-        canEmbed.Should().BeTrue();
+        ProviderAssert.Handles<YouTubeProvider>(url);
     }
 
 #if NET481
+    [Category("Integration")]
     
    [TestCase("https://youtu.be/LKWFkELeYwc")]
    [TestCase("http://youtu.be/LKWFkELeYwc")]
@@ -55,6 +52,7 @@ public class YouTubeTests : IProviderTests
 #endif
 
 #if NET9_0_OR_GREATER
+    [Category("Integration")]
     
    [TestCase("https://youtu.be/LKWFkELeYwc")]
    [TestCase("http://youtu.be/LKWFkELeYwc")]

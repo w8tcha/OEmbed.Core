@@ -1,18 +1,15 @@
-namespace OEmbed.Core.Tests.ProviderTests;
+﻿namespace OEmbed.Core.Tests.ProviderTests;
 
 public class StreamableTests : IProviderTests
 {
    [TestCase("https://streamable.com/hn8hq")]
     public void CanEmbedTest(string url)
     {
-        var embed = new OEmbed();
-
-        var canEmbed = embed.CanEmbed(url);
-
-        canEmbed.Should().BeTrue();
+        ProviderAssert.Handles<StreamableProvider>(url);
     }
 
 #if NET481
+    [Category("Integration")]
    [TestCase("https://streamable.com/hn8hq")]
     public void EmbedTest(string url)
     {
@@ -25,6 +22,7 @@ public class StreamableTests : IProviderTests
 #endif
 
 #if NET9_0_OR_GREATER
+    [Category("Integration")]
    [TestCase("https://streamable.com/hn8hq")]
     public async Task EmbedAsyncTest(string url)
     {

@@ -8,14 +8,11 @@ public class DeezerTests : IProviderTests
    [TestCase("https://www.deezer.com/us/playlist/8664185942")]
     public void CanEmbedTest(string url)
     {
-        var embed = new OEmbed();
-
-        var canEmbed = embed.CanEmbed(url);
-
-        canEmbed.Should().BeTrue();
+        ProviderAssert.Handles<DeezerProvider>(url);
     }
 
 #if NET481
+    [Category("Integration")]
     
    [TestCase("https://www.deezer.com/us/album/217565572")]
    [TestCase("https://www.deezer.com/us/track/1286394242")]
@@ -31,6 +28,7 @@ public class DeezerTests : IProviderTests
 #endif
 
 #if NET9_0_OR_GREATER
+    [Category("Integration")]
     
    [TestCase("https://www.deezer.com/us/album/217565572")]
    [TestCase("https://www.deezer.com/us/track/1286394242")]

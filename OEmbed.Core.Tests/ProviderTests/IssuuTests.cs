@@ -1,19 +1,15 @@
-namespace OEmbed.Core.Tests.ProviderTests;
+﻿namespace OEmbed.Core.Tests.ProviderTests;
 
 public class IssuuTests : IProviderTests
-{
-    [Ignore("Ignore because it throws sometimes a 403")] 
+{ 
     [TestCase("https://issuu.com/nationalgeographicexpeditions/docs/23907_feb_journeys_catalog_-_high_res")]
     public void CanEmbedTest(string url)
     {
-        var embed = new OEmbed();
-
-        var canEmbed = embed.CanEmbed(url);
-
-        canEmbed.Should().BeTrue();
+        ProviderAssert.Handles<IssuuProvider>(url);
     }
 
 #if NET481
+    [Category("Integration")]
     [Ignore("Ignore because it throws sometimes a 403")] 
     [TestCase("https://issuu.com/nationalgeographicexpeditions/docs/23907_feb_journeys_catalog_-_high_res")]
     public void EmbedTest(string url)
@@ -27,6 +23,7 @@ public class IssuuTests : IProviderTests
 #endif
 
 #if NET9_0_OR_GREATER
+    [Category("Integration")]
    [Ignore("Ignore because it throws sometimes a 403")]
    [TestCase("https://issuu.com/nationalgeographicexpeditions/docs/23907_feb_journeys_catalog_-_high_res")]
     public async Task EmbedAsyncTest(string url)

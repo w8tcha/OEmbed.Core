@@ -58,11 +58,24 @@ public class OEmbed : IOEmbed
 #if NET9_0_OR_GREATER
     // Shared for the lifetime of the process, matching the officially recommended HttpClient usage pattern -
     // avoids one HttpClient (and its own socket pool) being created per OEmbed instance/DI scope and never disposed.
-    private static readonly HttpClient _httpClient = CreateHttpClient();
+    private static readonly HttpClient SharedHttpClient = CreateHttpClient(null);
 
-    private static HttpClient CreateHttpClient()
+    private readonly HttpClient _httpClient = SharedHttpClient;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="OEmbed"/> class that sends its requests through
+    /// the given <paramref name="handler"/>. Intended for tests.
+    /// </summary>
+    /// <param name="options">The options.</param>
+    /// <param name="handler">The HTTP message handler.</param>
+    internal OEmbed(Options options, HttpMessageHandler handler) : this(options)
     {
-        var client = new HttpClient();
+        this._httpClient = CreateHttpClient(handler);
+    }
+
+    private static HttpClient CreateHttpClient(HttpMessageHandler handler)
+    {
+        var client = handler is null ? new HttpClient() : new HttpClient(handler);
         client.DefaultRequestHeaders.UserAgent.ParseAdd(BuildUserAgent());
         return client;
     }
@@ -225,7 +238,7 @@ public class OEmbed : IOEmbed
 
         try
         {
-            var content = await _httpClient.GetStringAsync(endpoint);
+            var content = await this._httpClient.GetStringAsync(endpoint);
 
             var response = JsonConvert.DeserializeObject<Response>(content);
 

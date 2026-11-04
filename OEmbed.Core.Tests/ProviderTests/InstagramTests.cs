@@ -10,11 +10,7 @@ public class InstagramTests : IProviderTests
    [TestCase("https://www.instagram.com/p/1XSKgBAGz-/?utm_source=ig_web_button_share_sheet")]
     public void CanEmbedTest(string url)
     {
-        var embed = new OEmbed();
-
-        var canEmbed = embed.CanEmbed(url);
-
-        canEmbed.Should().BeTrue();
+        ProviderAssert.Handles<InstagramProvider>(url);
     }
 
 #if NET481

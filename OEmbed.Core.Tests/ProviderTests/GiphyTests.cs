@@ -11,14 +11,11 @@ public class GiphyTests : IProviderTests
    [TestCase("http://giphy.com/embed/l2YWwjl8T5tdGiaf6")]
     public void CanEmbedTest(string url)
     {
-        var embed = new OEmbed();
-
-        var canEmbed = embed.CanEmbed(url);
-
-        canEmbed.Should().BeTrue();
+        ProviderAssert.Handles<GiphyProvider>(url);
     }
 
 #if NET481
+    [Category("Integration")]
 
     
    [TestCase("https://giphy.com/gifs/confused-iu-looking-up-l2YWwjl8T5tdGiaf6")]
@@ -38,6 +35,7 @@ public class GiphyTests : IProviderTests
 #endif
 
 #if NET9_0_OR_GREATER
+    [Category("Integration")]
     
    [TestCase("https://giphy.com/gifs/confused-iu-looking-up-l2YWwjl8T5tdGiaf6")]
    [TestCase("https://www.giphy.com/gifs/confused-iu-looking-up-l2YWwjl8T5tdGiaf6")]

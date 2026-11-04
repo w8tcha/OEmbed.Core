@@ -6,11 +6,7 @@ public class GitHubGistTests : IProviderTests
    [TestCase("https://gist.github.com/skabber/54099")]
     public void CanEmbedTest(string url)
     {
-        var embed = new OEmbed();
-
-        var canEmbed = embed.CanEmbed(url);
-
-        canEmbed.Should().BeTrue();
+        ProviderAssert.Handles<GitHubGistProvider>(url);
     }
 
 #if NET481

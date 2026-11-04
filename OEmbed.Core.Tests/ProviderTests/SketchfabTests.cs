@@ -1,18 +1,15 @@
-namespace OEmbed.Core.Tests.ProviderTests;
+﻿namespace OEmbed.Core.Tests.ProviderTests;
 
 public class SketchfabTests : IProviderTests
 {
    [TestCase("https://sketchfab.com/3d-models/99bfe75ebd734fa3832a63e02e2cacf7")]
     public void CanEmbedTest(string url)
     {
-        var embed = new OEmbed();
-
-        var canEmbed = embed.CanEmbed(url);
-
-        canEmbed.Should().BeTrue();
+        ProviderAssert.Handles<SketchfabProvider>(url);
     }
 
 #if NET481
+    [Category("Integration")]
    [TestCase("https://sketchfab.com/3d-models/99bfe75ebd734fa3832a63e02e2cacf7")]
     public void EmbedTest(string url)
     {
@@ -25,6 +22,7 @@ public class SketchfabTests : IProviderTests
 #endif
 
 #if NET9_0_OR_GREATER
+    [Category("Integration")]
    [TestCase("https://sketchfab.com/3d-models/99bfe75ebd734fa3832a63e02e2cacf7")]
     public async Task EmbedAsyncTest(string url)
     {

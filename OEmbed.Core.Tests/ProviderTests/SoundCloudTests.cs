@@ -8,14 +8,11 @@ public class SoundCloudTests : IProviderTests
    [TestCase("https://soundcloud.com/blackpinkofficial?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing")]
     public void CanEmbedTest(string url)
     {
-        var embed = new OEmbed();
-
-        var canEmbed = embed.CanEmbed(url);
-
-        canEmbed.Should().BeTrue();
+        ProviderAssert.Handles<SoundCloudProvider>(url);
     }
 
 #if NET481
+    [Category("Integration")]
 
     
    [TestCase("https://soundcloud.com/blackpinkofficial")]
@@ -32,6 +29,7 @@ public class SoundCloudTests : IProviderTests
 #endif
 
 #if NET9_0_OR_GREATER
+    [Category("Integration")]
     
    [TestCase("https://soundcloud.com/blackpinkofficial")]
    [TestCase("https://soundcloud.com/blackpinkofficial/whistle")]

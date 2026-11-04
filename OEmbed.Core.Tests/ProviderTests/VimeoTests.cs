@@ -11,14 +11,11 @@ public class VimeoTests : IProviderTests
    [TestCase("https://vimeo.com/terjes/themountain#t=5s")]
     public void CanEmbedTest(string url)
     {
-        var embed = new OEmbed();
-
-        var canEmbed = embed.CanEmbed(url);
-
-        canEmbed.Should().BeTrue();
+        ProviderAssert.Handles<VimeoProvider>(url);
     }
 
 #if NET481
+    [Category("Integration")]
     
    [TestCase("https://vimeo.com/22439234")]
    [TestCase("https://vimeo.com/22439234?embedded=true&source=video_title&owner=910279")]
@@ -37,6 +34,7 @@ public class VimeoTests : IProviderTests
 #endif
 
 #if NET9_0_OR_GREATER
+    [Category("Integration")]
     
    [TestCase("https://vimeo.com/22439234")]
    [TestCase("https://vimeo.com/22439234?embedded=true&source=video_title&owner=910279")]

@@ -8,11 +8,7 @@ public class TwitchTests : IProviderTests
    [TestCase("https://www.twitch.tv/therealknossi/clip/DiligentRelatedBisonVoteYea-5mkamtYyocJOfu79")]
     public void CanEmbedTest(string url)
     {
-        var embed = new OEmbed();
-
-        var canEmbed = embed.CanEmbed(url);
-
-        canEmbed.Should().BeTrue();
+        ProviderAssert.Handles<TwitchProvider>(url);
     }
 
 #if NET481

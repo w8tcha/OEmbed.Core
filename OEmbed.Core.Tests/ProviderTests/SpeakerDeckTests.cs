@@ -1,18 +1,15 @@
-namespace OEmbed.Core.Tests.ProviderTests;
+﻿namespace OEmbed.Core.Tests.ProviderTests;
 
 public class SpeakerDeckTests : IProviderTests
 {
    [TestCase("https://speakerdeck.com/jnunemaker/atom")]
     public void CanEmbedTest(string url)
     {
-        var embed = new OEmbed();
-
-        var canEmbed = embed.CanEmbed(url);
-
-        canEmbed.Should().BeTrue();
+        ProviderAssert.Handles<SpeakerDeckProvider>(url);
     }
 
 #if NET481
+    [Category("Integration")]
    [TestCase("https://speakerdeck.com/jnunemaker/atom")]
     public void EmbedTest(string url)
     {
@@ -25,6 +22,7 @@ public class SpeakerDeckTests : IProviderTests
 #endif
 
 #if NET9_0_OR_GREATER
+    [Category("Integration")]
    [TestCase("https://speakerdeck.com/jnunemaker/atom")]
     public async Task EmbedAsyncTest(string url)
     {

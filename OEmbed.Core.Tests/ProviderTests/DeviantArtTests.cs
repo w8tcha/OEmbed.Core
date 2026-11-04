@@ -2,18 +2,14 @@
 
 public class DeviantArtTests : IProviderTests
 {
-    [Ignore("Ignore because it throws sometimes a 403")]
     [TestCase("https://www.deviantart.com/wlop/art/Sunshine2-905829772")]
     public void CanEmbedTest(string url)
     {
-        var embed = new OEmbed();
-
-        var canEmbed = embed.CanEmbed(url);
-
-        canEmbed.Should().BeTrue();
+        ProviderAssert.Handles<DeviantArtProvider>(url);
     }
 
 #if NET481
+    [Category("Integration")]
     [Ignore("Ignore because it throws sometimes a 403")]
     [TestCase("https://www.deviantart.com/wlop/art/Sunshine2-905829772")]
     public void EmbedTest(string url)
@@ -27,6 +23,7 @@ public class DeviantArtTests : IProviderTests
 #endif
 
 #if NET9_0_OR_GREATER
+    [Category("Integration")]
     [Ignore("Ignore because it throws sometimes a 403")]
     [TestCase("https://www.deviantart.com/wlop/art/Sunshine2-905829772")]
     public async Task EmbedAsyncTest(string url)

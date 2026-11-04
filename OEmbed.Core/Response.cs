@@ -116,11 +116,28 @@ public class Response
         return this.Type switch
         {
             ResponseType.Video => this.Html,
-            ResponseType.Photo => string.Format(PhotoTemplate, this.Url, this.Title),
-            ResponseType.Link => string.Format(LinkTemplate, this.AuthorUrl, this.Title ?? this.AuthorName),
+            ResponseType.Photo => string.Format(PhotoTemplate, Encode(SafeUrl(this.Url)), Encode(this.Title)),
+            ResponseType.Link => string.Format(LinkTemplate, Encode(SafeUrl(this.AuthorUrl)), Encode(this.Title ?? this.AuthorName)),
             ResponseType.Rich => this.Html,
             _ when !string.IsNullOrEmpty(this.Html) => this.Html,
             _ => throw new InvalidOperationException($"Unable to render oEmbed response: unknown type '{this.Type}' and no Html to fall back to.")
         };
     }
+
+    /// <summary>
+    /// HTML-encodes a value from the (untrusted) oEmbed response before it is placed into markup.
+    /// </summary>
+    /// <param name="value">The value.</param>
+    private static string Encode(string value) => System.Net.WebUtility.HtmlEncode(value ?? string.Empty);
+
+    /// <summary>
+    /// Returns the URL only when it is an absolute http(s) URL, so that e.g. <c>javascript:</c> URLs
+    /// from the oEmbed response can never end up in an <c>href</c> or <c>src</c> attribute.
+    /// </summary>
+    /// <param name="url">The URL.</param>
+    private static string SafeUrl(string url) =>
+        Uri.TryCreate(url, UriKind.Absolute, out var uri) &&
+        (uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps)
+            ? url
+            : string.Empty;
 }

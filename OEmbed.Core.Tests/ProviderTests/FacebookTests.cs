@@ -10,11 +10,7 @@ public class FacebookTests : IProviderTests
    [TestCase("https://www.facebook.com/iu.loen/videos/537284977236313")]
     public void CanEmbedTest(string url)
     {
-        var embed = new OEmbed();
-
-        var canEmbed = embed.CanEmbed(url);
-
-        canEmbed.Should().BeTrue();
+        ProviderAssert.Handles<FacebookProvider>(url);
     }
 
 #if NET481

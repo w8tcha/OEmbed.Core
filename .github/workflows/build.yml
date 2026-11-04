@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - master
-      
+
 jobs:
   build:
 
@@ -20,5 +20,28 @@ jobs:
           dotnet-version: ${{ matrix.dotnet-version }}
       - name: Build
         run: dotnet build
+
+      # Offline unit tests - these gate the build (and therefore the release workflow).
       - name: Test
-        run: dotnet test
+        run: dotnet test --no-build --filter "TestCategory!=Integration" --collect:"XPlat Code Coverage" --results-directory TestResults
+
+      - name: Coverage report
+        if: always()
+        shell: bash
+        run: |
+          dotnet tool install --global dotnet-reportgenerator-globaltool
+          reportgenerator -reports:"TestResults/**/coverage.cobertura.xml" -targetdir:coverage -reporttypes:"MarkdownSummaryGithub;Cobertura"
+          cat coverage/SummaryGithub.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload coverage
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: coverage
+
+      # Live tests against the real oEmbed endpoints. Third-party sites are flaky (rate limits, 403s, outages),
+      # so failures are reported but do not fail the build.
+      - name: Integration tests
+        continue-on-error: true
+        run: dotnet test --no-build --filter "TestCategory=Integration"
