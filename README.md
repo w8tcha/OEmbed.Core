@@ -7,6 +7,7 @@ C# [oEmbed](https://oembed.com) consumer library for .NET Framwork 4.8.1 and .NE
 [![NuGet](https://img.shields.io/nuget/v/OEmbed.Core.svg)](https://nuget.org/packages/OEmbed.Core)
 [![build dotnet](https://github.com/w8tcha/OEmbed.Core/actions/workflows/build.yml/badge.svg)](https://github.com/w8tcha/OEmbed.Core/actions/workflows/build.yml)
 [![Coverage](https://github.com/w8tcha/OEmbed.Core/raw/badges/badge_linecoverage.svg)](https://github.com/w8tcha/OEmbed.Core/actions/workflows/build.yml)
+[![Ko-fi](https://img.shields.io/badge/Ko--fi-Support%20Me-ff5e5b?logo=ko-fi&logoColor=white)](https://ko-fi.com/w8tcha)
 
 ### Supported Providers
 * Bsky.app
